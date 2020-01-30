@@ -3,71 +3,182 @@ package projectCode20280;
 import java.util.Iterator;
 
 public class SinglyLinkedList<E> implements List<E> {
+	Node<E> head = null;
+	int size = 0;
 
 	private class Node<E> {
-		/// TODO
+		private E element;
+		
+		private Node<E> next;
+		
+		public Node(E e, Node<E> next)
+		{
+			this.element = e;
+			this.next = next;
+		}
+		
+		public E getElement()
+		{
+			return element;
+		}
+		
+		public Node<E> getNext()
+		{
+			return next;
+		}
+		
+		public void setNext(Node<E> n)
+		{
+			next = n;
+		}
 	}
 	
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		if (head == null)
+		{
+			return true;
+		}
+		
+		else
+		{
+			return false;
+		}
 	}
 
 	@Override
 	public E get(int i) {
-		// TODO Auto-generated method stub
-		return null;
+		if (head == null || i < size)
+		{
+			throw new RuntimeException("cannot get");
+		}
+		
+		Node<E> curr = head;
+		Node<E> prev = null; 
+
+		for(int k=0;k<i;k++)
+		{
+			prev = curr;
+			curr = curr.next;
+		}
+		
+		return curr.element;
 	}
 
 	@Override
 	public void add(int i, E e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public E remove(int i) {
-		// TODO Auto-generated method stub
-		return null;
+		if (head == null)
+		{
+			throw new RuntimeException("cannot delete");
+		}
+		
+		if (i == 1)
+		{
+			this.removeFirst();
+		}
+		
+		Node<E> curr = head;
+		Node<E> prev = null;
+		int k = 1;
+		
+		while (curr != null && k != i)
+		{
+			prev = curr;
+			curr = curr.next;
+			k++;
+		}
+		
+		if (curr == null)
+		{
+			throw new RuntimeException("cannot delete");
+		}
+		E e = prev.element;
+		prev.next = curr.next;
+		return e;
 	}
 
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
 		return null;
+		
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.size;
 	}	
 	
 
 	@Override
 	public E removeFirst() {
-		// TODO Auto-generated method stub
-		return null;
+		E temp = head.element;
+		head = head.next;
+		return temp;
 	}
 
 	@Override
 	public E removeLast() {
-		// TODO Auto-generated method stub
-		return null;
+		Node<E> curr = head;
+		Node<E> prev = null;
+		
+		while(curr.next != null)
+		{
+			prev = curr;
+			curr = curr.getNext();
+		}
+		
+		E e = curr.element;
+		prev.next = null;
+		return e;
 	}
 
 	@Override
 	public void addFirst(E e) {
-		// TODO Auto-generated method stub
+		head = new Node<E>(e, head);
+		size++;
 		
 	}
 
 	@Override
 	public void addLast(E e) {
-		// TODO Auto-generated method stub
+		Node<E> newest = new Node<E>(e, null);
+		Node<E> last = head;
 		
+		if (last == null)
+		{
+			head = newest;
+		}
+		
+		else
+		{
+			while (last.getNext() != null)
+			{
+				last = last.getNext();
+			}
+			
+			last.setNext(newest);
+		}
+		
+		size++;
 	}
+	
+	public String toString(){
+        String retStr = "Contents:\n";
+
+        Node<E> current = head;
+        while(current != null){
+            retStr += current.element + " ";
+            current = current.getNext();
+
+        }
+
+        return retStr;
+    }
 	
 	public static void main(String[] args) {
 		String[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
