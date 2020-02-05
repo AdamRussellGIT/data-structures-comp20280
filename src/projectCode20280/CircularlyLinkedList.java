@@ -125,28 +125,62 @@ public class CircularlyLinkedList<E> implements List<E> {
 
 	@Override
 	public E removeFirst() {
-		E e = head.getElement();
-		tail.setNext(head.getNext());
-		head = tail.getNext();
-		size--;
-		return e;
+		if (size == 0)
+		{
+			throw new RuntimeException("cannot remove");
+		}
+		
+		if (size == 1)
+		{
+			E e = head.getElement();
+			head = null;
+			tail = null;
+			size--;
+			return e;
+		}
+		
+		else
+		{
+			E e = head.getElement();
+			tail.setNext(head.getNext());
+			head = tail.getNext();
+			size--;
+			return e;
+		}
 	}
 
 	@Override
 	public E removeLast() {
-		E e = tail.getElement();
-		
-		Node<E> find = head;
-		
-		for (int k = 0; k < size-2; k++)
+		if (size == 0)
 		{
-			find = find.getNext();
+			throw new RuntimeException("cannot remove");
 		}
 		
-		find.setNext(head);
-		tail = find;
-		size--;
-		return e;
+		if (size == 1)
+		{
+			E e = head.getElement();
+			head = null;
+			tail = null;
+			size--;
+			return e;
+		}
+		
+		else
+		{
+			E e = tail.getElement();
+		
+			Node<E> find = head;
+		
+			for (int k = 0; k < size-2; k++)
+			{
+				find = find.getNext();
+			}
+		
+			find.setNext(head);
+			tail = find;
+			size--;
+			return e;
+		}
 	}
 
 	private class ListIterator implements Iterator<E>
@@ -233,20 +267,34 @@ public class CircularlyLinkedList<E> implements List<E> {
 	}
 	
 	public String toString() {
-	    StringBuilder str = new StringBuilder();
-	    Node<E> curr = head;
-	    while (true) {
-	        str.append(curr.element);
-	        str.append(" ");
-	        curr = curr.getNext();
-	        if (curr == head) break;
-	    }
-	    return str.toString();
+		StringBuilder str = new StringBuilder();
+		if (size == 0)
+		{
+			throw new RuntimeException("cannot print");
+		}
+		else if (size == 1)
+		{
+			str.append(head.getElement());
+			return str.toString();
+		}
+		
+		else
+		{
+			Node<E> curr = head;
+			while (true) {
+				str.append(curr.element);
+				str.append(" ");
+				curr = curr.getNext();
+				if (curr == head) break;
+			}
+			return str.toString();
+		}
 	}
 	
 	
 	public static void main(String[] args) {
 		CircularlyLinkedList<Integer> ll = new CircularlyLinkedList<Integer>();
+		
 		for(int i = 10; i < 20; ++i) {
 			ll.addLast(i);
 		}

@@ -67,7 +67,23 @@ public class SinglyLinkedList<E> implements List<E> {
 
 	@Override
 	public void add(int i, E e) {
-
+		if(i < size-1)
+		{
+			throw new RuntimeException("cannot add");
+		}
+		
+		Node<E> curr = head;
+		Node<E> prev = null;
+		
+		for(int k=0;k<i;k++)
+		{
+			prev = curr;
+			curr = curr.next;
+		}
+		
+		Node<E> newest = new Node<E>(e, curr.next);
+		prev.next = newest;
+		newest.next = curr;
 	}
 
 	@Override
@@ -101,11 +117,34 @@ public class SinglyLinkedList<E> implements List<E> {
 		prev.next = curr.next;
 		return e;
 	}
+	
+	private class ListIterator implements Iterator<E>
+	{
+		Node<E> curr;
+		
+		public ListIterator()
+		{
+			curr = head;
+		}
+		
+		@Override
+		public boolean hasNext()
+		{
+			return curr != null;
+		}
+		
+		@Override
+		public E next()
+		{
+			E res = (E) curr.getElement();
+			curr = curr.getNext();
+			return res;
+		}
+	}
 
 	@Override
 	public Iterator<E> iterator() {
-		return null;
-		
+		return new ListIterator();	
 	}
 
 	@Override
