@@ -223,6 +223,11 @@ public class SinglyLinkedList<E> implements List<E> {
 		String[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 		SinglyLinkedList<String> sll = new SinglyLinkedList<String>();
+		sll.addFirst("Hello");
+		System.out.println(sll);
+		sll.addFirst("Kiddie");
+		sll.addLast("Bye");
+		System.out.println(sll);
 		for (String s : alphabet) {
 			sll.addFirst(s);
 			sll.addLast(s);
