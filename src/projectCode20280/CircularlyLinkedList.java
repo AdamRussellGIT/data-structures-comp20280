@@ -55,7 +55,7 @@ public class CircularlyLinkedList<E> implements List<E> {
 
 	@Override
 	public E get(int i) {
-		if (head == null || (i < size-1))
+		if (head == null || (i > size-1))
 		{
 			throw new RuntimeException("cannot get");
 		}

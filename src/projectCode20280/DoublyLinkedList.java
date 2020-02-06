@@ -210,13 +210,13 @@ public class DoublyLinkedList<E> implements List<E> {
 		
 		public ListIterator()
 		{
-			curr = header;
+			curr = header.getNext();
 		}
 		
 		@Override
 		public boolean hasNext()
 		{
-			return curr != null;
+			return curr != trailer;
 		}
 		
 		@Override
@@ -236,8 +236,8 @@ public class DoublyLinkedList<E> implements List<E> {
 	public String toString(){
         String retStr = "Contents:\n";
 
-        Node<E> current = header;
-        while(current != null){
+        Node<E> current = header.getNext();
+        while(current.getNext() != null){
             retStr += current.element + " ";
             current = current.getNext();
 
@@ -245,6 +245,16 @@ public class DoublyLinkedList<E> implements List<E> {
 
         return retStr;
     }
+	
+	public E getFirst()
+	{
+		return header.getNext().getElement();
+	}
+	
+	public E getLast()
+	{
+		return trailer.getPrev().getElement();
+	}
 	
 	public static void main(String[] args) {
 		   DoublyLinkedList<Integer> ll = new DoublyLinkedList<Integer>();

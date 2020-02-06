@@ -9,40 +9,57 @@ package projectCode20280;
  */
 
 public class LinkedCircularQueue<E> implements Queue<E> {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	private CircularlyLinkedList<E> list = new CircularlyLinkedList<>();
+	
+	public LinkedCircularQueue()
+	{
+		;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return list.size();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return list.isEmpty();
 	}
 
 	@Override
 	public void enqueue(E e) {
-		// TODO Auto-generated method stub
-
+		list.addLast(e);
 	}
 
 	@Override
 	public E first() {
-		// TODO Auto-generated method stub
-		return null;
+		return list.get(0);
 	}
 
 	@Override
 	public E dequeue() {
-		// TODO Auto-generated method stub
-		return null;
+		return list.removeFirst();
+	}
+	
+	public String toString()
+	{
+		return list.toString();
+	}
+	
+	public static void main(String[] args) {
+		LinkedCircularQueue<Integer> stack = new LinkedCircularQueue<Integer>();	
+		stack.enqueue(3);
+		System.out.println(stack);
+		stack.enqueue(6);
+		System.out.println(stack);
+		stack.enqueue(14);
+		System.out.println(stack);
+		stack.dequeue();
+		System.out.println(stack);
+		System.out.println("Size is " + stack.size());
+		System.out.println("First element is " + stack.first());
+		stack.enqueue(60);
+		System.out.println(stack);
 	}
 
 }

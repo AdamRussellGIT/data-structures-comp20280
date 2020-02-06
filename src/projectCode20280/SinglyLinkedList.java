@@ -48,7 +48,7 @@ public class SinglyLinkedList<E> implements List<E> {
 
 	@Override
 	public E get(int i) {
-		if (head == null || i < size)
+		if (head == null || i > size)
 		{
 			throw new RuntimeException("cannot get");
 		}
@@ -84,6 +84,7 @@ public class SinglyLinkedList<E> implements List<E> {
 		Node<E> newest = new Node<E>(e, curr.next);
 		prev.next = newest;
 		newest.next = curr;
+		size++;
 	}
 
 	@Override
@@ -115,6 +116,7 @@ public class SinglyLinkedList<E> implements List<E> {
 		}
 		E e = prev.element;
 		prev.next = curr.next;
+		size--;
 		return e;
 	}
 	
@@ -157,23 +159,36 @@ public class SinglyLinkedList<E> implements List<E> {
 	public E removeFirst() {
 		E temp = head.element;
 		head = head.next;
+		size--;
 		return temp;
 	}
 
 	@Override
 	public E removeLast() {
-		Node<E> curr = head;
-		Node<E> prev = null;
-		
-		while(curr.next != null)
+		if (head.getNext() == null)
 		{
-			prev = curr;
-			curr = curr.getNext();
+			E e = head.getElement();
+			head = null;
+			size--;
+			return e;
 		}
 		
-		E e = curr.element;
-		prev.next = null;
-		return e;
+		else
+		{
+			Node<E> curr = head;
+			Node<E> prev = null;
+		
+			while(curr.next != null)
+			{
+				prev = curr;
+				curr = curr.getNext();
+			}
+		
+			E e = curr.element;
+			prev.next = null;
+			size--;
+			return e;
+		}
 	}
 
 	@Override
@@ -223,11 +238,6 @@ public class SinglyLinkedList<E> implements List<E> {
 		String[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 		SinglyLinkedList<String> sll = new SinglyLinkedList<String>();
-		sll.addFirst("Hello");
-		System.out.println(sll);
-		sll.addFirst("Kiddie");
-		sll.addLast("Bye");
-		System.out.println(sll);
 		for (String s : alphabet) {
 			sll.addFirst(s);
 			sll.addLast(s);

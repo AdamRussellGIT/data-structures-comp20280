@@ -1,40 +1,60 @@
 package projectCode20280;
 
 public class LinkedStack<E> implements Stack<E> {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	private SinglyLinkedList<E> list = new SinglyLinkedList<>();
+	
+	public LinkedStack()
+	{
+		;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return list.size();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return list.isEmpty();
 	}
 
 	@Override
 	public void push(E e) {
-		// TODO Auto-generated method stub
-		
+		list.addLast(e);
 	}
 
 	@Override
 	public E top() {
-		// TODO Auto-generated method stub
-		return null;
+		return list.get(size()-1);
 	}
 
 	@Override
 	public E pop() {
-		// TODO Auto-generated method stub
-		return null;
+		E e = list.removeLast();
+		return e;
+	}
+	
+	public String toString()
+	{
+		return list.toString();
+	}
+	
+	public static void main(String[] args) {
+		LinkedStack<Integer> stack = new LinkedStack<Integer>();	
+		stack.push(3);
+		System.out.println(stack);
+		stack.push(6);
+		System.out.println(stack);
+		stack.push(14);
+		System.out.println(stack);
+		stack.pop();
+		System.out.println(stack);
+		System.out.println(stack.size());
+		System.out.println(stack.top());
+		stack.push(60);
+		System.out.println(stack);
+		
+
 	}
 
 }
