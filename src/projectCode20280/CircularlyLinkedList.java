@@ -134,7 +134,6 @@ public class CircularlyLinkedList<E> implements List<E> {
 		{
 			E e = head.getElement();
 			head = null;
-			tail = null;
 			size--;
 			return e;
 		}
@@ -142,8 +141,14 @@ public class CircularlyLinkedList<E> implements List<E> {
 		else
 		{
 			E e = head.getElement();
-			tail.setNext(head.getNext());
-			head = tail.getNext();
+			Node<E> find = head;
+			
+			for (int k = 0; k < size-1; k++)
+			{
+				find = find.getNext();
+			}
+			head = head.getNext();
+			find.setNext(head);
 			size--;
 			return e;
 		}
@@ -160,24 +165,20 @@ public class CircularlyLinkedList<E> implements List<E> {
 		{
 			E e = head.getElement();
 			head = null;
-			tail = null;
 			size--;
 			return e;
 		}
 		
 		else
 		{
-			E e = tail.getElement();
-		
 			Node<E> find = head;
 		
 			for (int k = 0; k < size-2; k++)
 			{
 				find = find.getNext();
 			}
-		
+			E e = find.getElement();
 			find.setNext(head);
-			tail = find;
 			size--;
 			return e;
 		}
@@ -229,15 +230,18 @@ public class CircularlyLinkedList<E> implements List<E> {
 		{
 			Node<E> newest = new Node<E>(e, null);
 			head = newest;
-			tail = newest;
-			tail.setNext(head);
 		}
 		
 		else
 		{
-			Node<E> newest = new Node<E>(e, head);
-			head = newest;
-			tail.setNext(newest);
+			Node<E> find = head;
+			
+			for (int k = 0; k < size-1; k++)
+			{
+				find = find.getNext();
+			}
+			find.setNext(head);
+			head = find;
 		}
 		size++;
 	}
@@ -248,21 +252,26 @@ public class CircularlyLinkedList<E> implements List<E> {
 		{
 			Node<E> newest = new Node<E>(e, null);
 			head = newest;
-			tail = newest;
-			tail.setNext(head);
 		}
 		
 		else
 		{
 			Node<E> newest = new Node<E>(e, head);
-			tail.setNext(newest);
-			tail = newest;
+			
+			Node<E> find = head;
+			
+			for (int k = 0; k < size-1; k++)
+			{
+				find = find.getNext();
+			}
+			
+			find.setNext(newest);
+			newest.setNext(head);
 		}
 		size++;
 	}
 
 	public void rotate() {
-		tail = head;
 		head = head.getNext();
 	}
 	
@@ -301,7 +310,7 @@ public class CircularlyLinkedList<E> implements List<E> {
 
 		System.out.println("Initial:\n" + ll);
 
-		ll.removeFirst();
+		System.out.println("Removed " + ll.removeFirst());
 		System.out.println("Removed First:\n" + ll);
 
 		ll.removeLast();
