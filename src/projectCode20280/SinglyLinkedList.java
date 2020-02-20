@@ -221,6 +221,40 @@ public class SinglyLinkedList<E> implements List<E> {
 		size++;
 	}
 	
+	public void reverse()
+	{
+		Node<E> temp = head;
+		
+		if (this.size == 0)
+		{
+			return;
+		}
+		
+		temp = head;
+		this.removeFirst();
+		this.reverse();
+		this.addLast(temp.getElement());
+		
+	}
+	
+	public SinglyLinkedList<E> recursiveCopy()
+	{	
+		SinglyLinkedList<E> newll = new SinglyLinkedList<E>();
+		if (this.size == 0)
+		{
+			return newll;
+		}
+		
+		Node<E>temp = new Node<E>(this.removeFirst(),null);
+		newll.addFirst(temp.getElement());
+		this.recursiveCopy();
+		this.addFirst(temp.getElement());
+		
+		return newll;
+	}
+	
+	
+	
 	public String toString(){
         String retStr = "Contents:\n";
 
@@ -240,7 +274,7 @@ public class SinglyLinkedList<E> implements List<E> {
 		SinglyLinkedList<String> sll = new SinglyLinkedList<String>();
 		for (String s : alphabet) {
 			sll.addFirst(s);
-			sll.addLast(s);
+			//sll.addLast(s);
 		}
 		System.out.println(sll.toString());
 
@@ -252,6 +286,15 @@ public class SinglyLinkedList<E> implements List<E> {
 
 		sll.remove(2);
 		System.out.println(sll.toString());
+		
+		sll.reverse();
+		System.out.println(sll.toString());
+		
+		SinglyLinkedList<String> sll2 = new SinglyLinkedList<String>();
+		sll2 = sll.recursiveCopy();
+		sll2.addFirst("Yo");
+		sll.addFirst("bye");
+		System.out.println("sll2 : \n" + sll2.toString());
 		
 		for (String s : sll) {
 			System.out.print(s + ", ");
