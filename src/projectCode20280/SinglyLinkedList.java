@@ -5,6 +5,7 @@ import java.util.Iterator;
 public class SinglyLinkedList<E> implements List<E> {
 	Node<E> head = null;
 	int size = 0;
+	SinglyLinkedList<E> newll;
 
 	private class Node<E> {
 		private E element;
@@ -239,15 +240,15 @@ public class SinglyLinkedList<E> implements List<E> {
 	
 	public SinglyLinkedList<E> recursiveCopy()
 	{	
-		SinglyLinkedList<E> newll = new SinglyLinkedList<E>();
 		if (this.size == 0)
 		{
+			newll = new SinglyLinkedList<E>();
 			return newll;
 		}
 		
 		Node<E>temp = new Node<E>(this.removeFirst(),null);
+		recursiveCopy();
 		newll.addFirst(temp.getElement());
-		this.recursiveCopy();
 		this.addFirst(temp.getElement());
 		
 		return newll;
