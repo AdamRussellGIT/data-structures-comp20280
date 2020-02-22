@@ -5,7 +5,7 @@ import java.util.Iterator;
 public class SinglyLinkedList<E> implements List<E> {
 	Node<E> head = null;
 	int size = 0;
-	SinglyLinkedList<E> newll;
+	private SinglyLinkedList<E> newll;
 
 	private class Node<E> {
 		private E element;
