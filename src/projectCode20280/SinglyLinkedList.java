@@ -226,12 +226,11 @@ public class SinglyLinkedList<E> implements List<E> {
 	{
 		Node<E> temp = head;
 		
-		if (this.size == 0)
+		if (this.isEmpty())
 		{
 			return;
 		}
 		
-		temp = head;
 		this.removeFirst();
 		this.reverse();
 		this.addLast(temp.getElement());
@@ -246,7 +245,7 @@ public class SinglyLinkedList<E> implements List<E> {
 			return newll;
 		}
 		
-		Node<E>temp = new Node<E>(this.removeFirst(),null);
+		Node<E>temp = new Node<E>(this.removeFirst(), null);
 		recursiveCopy();
 		newll.addFirst(temp.getElement());
 		this.addFirst(temp.getElement());
