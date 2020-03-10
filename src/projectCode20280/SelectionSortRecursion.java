@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class SelectionSortRecursion 
 {
-	public static void selectionSort(int arr[], int i)
+	public static <E extends Comparable<E>> void selectionSort(E[] arr, int i)
 	{
 		if (i >= arr.length - 1)
 		{
@@ -15,23 +15,44 @@ public class SelectionSortRecursion
 		
 		for (int index = i + 1; index < arr.length; index++)
 		{
-			if (arr[index] < arr[minIndex])
+			if (arr[index].compareTo(arr[minIndex]) < 0 )
 			{
 				minIndex = index;
 			}
 		}
 		
-		int temp = arr[i];
+		E temp = arr[i];
 		arr[i] = arr[minIndex];
 		arr[minIndex] = temp;
 		
 		selectionSort(arr, i + 1);
 	}
 	
+	public static <E extends Comparable<E>> void sort(E[] arr) 
+    { 
+        int n = arr.length; 
+  
+        // One by one move boundary of unsorted subarray 
+        for (int i = 0; i < n-1; i++) 
+        { 
+            // Find the minimum element in unsorted array 
+            int min_idx = i; 
+            for (int j = i+1; j < n; j++) 
+                if (arr[j].compareTo(arr[min_idx]) < 0) 
+                    min_idx = j; 
+  
+            // Swap the found minimum element with the first 
+            // element 
+            E temp = arr[min_idx]; 
+            arr[min_idx] = arr[i]; 
+            arr[i] = temp; 
+        } 
+    } 
+	
 	public static void main(String[] args)
 	{
-		int size = 10;
-		int[] anArray = new int[size];
+		int size = 1000;
+		Integer[] anArray = new Integer[size];
 		
 		for (int i = 0; i < size; i++)
 		{
@@ -40,14 +61,14 @@ public class SelectionSortRecursion
 		
 		System.out.println("Before sorting :\n" + Arrays.toString(anArray));
 		
-		long startTime = System.nanoTime();
-		selectionSort(anArray, size);
-		long endTime = System.nanoTime();
+		long startTime = System.currentTimeMillis();
+		sort(anArray);
+		long endTime = System.currentTimeMillis();
 		
 		long timeTaken = endTime - startTime;
 		
 		System.out.println("After sorting :\n" + Arrays.toString(anArray));
 		
-		System.out.println("Time taken to sort (in nano seconds): " + timeTaken);
+		System.out.println("Time taken to sort (in milli seconds): " + timeTaken);
 	}
 }

@@ -73,7 +73,7 @@ public class MergeSortRecursion
 	
 	public static void main(String[] args)
 	{
-		int size = 10;
+		int size = 1000;
 		int[] anArray = new int[size];
 		
 		for (int i = 0; i < anArray.length; i++)
@@ -83,14 +83,14 @@ public class MergeSortRecursion
 		
 		System.out.println("Before sorting :\n" + Arrays.toString(anArray));
 		
-		long startTime = System.nanoTime();
+		long startTime = System.currentTimeMillis();
 		mergeSort(anArray, 0, anArray.length-1);
-		long endTime = System.nanoTime();
+		long endTime = System.currentTimeMillis();
 		
 		long timeTaken = endTime - startTime;
 		
 		System.out.println("After sorting :\n" + Arrays.toString(anArray));
 		
-		System.out.println("Time taken to sort (in nano seconds): " + timeTaken);
+		System.out.println("Time taken to sort (in milli seconds): " + timeTaken);
 	}
 }

@@ -207,6 +207,23 @@ public class HeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
     }
   }
   
+  public static void PQSort(SinglyLinkedList<Integer> sll)
+  {
+	  HeapPriorityQueue<Integer, Integer> hpq = new HeapPriorityQueue<Integer, Integer>();
+	  
+	  while (!sll.isEmpty())
+	  {
+		  int e = sll.removeFirst();
+		  hpq.insert(e, e);
+	  }
+	  
+	  while(!hpq.isEmpty()) 
+	  {
+		int e = hpq.removeMin().getKey();
+		sll.addLast(e);
+	  }  
+  }
+  
   public String toString()
   {
 	  return Arrays.toString(heap.toArray());
@@ -214,16 +231,25 @@ public class HeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
   
   public static void main(String[] args)
   {
-	  HeapPriorityQueue<Integer, Integer> hpq = new HeapPriorityQueue<Integer, Integer>();
+	  int size = 1;
+	   
+	  SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
 	  
-	  int[] keys = {2, 5, 7, 3, 4, 5, 32, 1};
+	  for (int i = 0; i < size; i++)
+		{
+			sll.addLast((int) (Math.random() * (1000 - 1)) + 1);
+		}
 	  
-	  for (int i = 0; i < keys.length; i++)
-	  {
-		  hpq.insert(keys[i],  keys[i]);
-	  }
+	  System.out.println(sll.toString());
 	  
-	  System.out.println(hpq.toString());
+	  long startTime = System.currentTimeMillis();
+	  PQSort(sll);
+	  long endTime = System.currentTimeMillis();
+	  
+	  long totalTime = endTime - startTime;
+	  
+	  System.out.println(sll.toString());
+	  System.out.println("Time take in milliseconds : " + totalTime);
   }
 }
 
