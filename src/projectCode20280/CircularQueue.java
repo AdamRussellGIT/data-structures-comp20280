@@ -1,11 +1,19 @@
 package projectCode20280;
 
-public class LinkedQueue<E> implements Queue<E> {
-	private DoublyLinkedList<E> list;
+/*
+	CircularQueue implements the Queue<T> interface.
+	It is an improvement on a regular LinkedQueue as it allows for faster access to
+		elements near the end of the list, and also has quick access to items at both the
+			beginning and end of the queue.
+	Otherwise it performs in a very similar fashion to the LinkedQueue class.
+*/
+
+public class CircularQueue<E> implements Queue<E> {
+	private CircularlyLinkedList<E> list;
 	
-	public LinkedQueue()
+	public CircularQueue()
 	{
-		list = new DoublyLinkedList<>();
+		list = new CircularlyLinkedList<>();
 	}
 
 	@Override
@@ -25,7 +33,17 @@ public class LinkedQueue<E> implements Queue<E> {
 
 	@Override
 	public E first() {
-		return list.get(0);
+		return list.first();
+	}
+	
+	public E front()
+	{
+		return first();
+	}
+	
+	public E back()
+	{
+		return list.last();
 	}
 
 	@Override
@@ -33,19 +51,22 @@ public class LinkedQueue<E> implements Queue<E> {
 		return list.removeFirst();
 	}
 	
+	@Override
 	public String toString()
 	{
 		return list.toString();
 	}
 	
 	public static void main(String[] args) {
-		LinkedQueue<Integer> queue = new LinkedQueue<Integer>();	
+		CircularQueue<Integer> queue = new CircularQueue<Integer>();	
 		queue.enqueue(3);
 		System.out.println(queue);
 		queue.enqueue(6);
 		System.out.println(queue);
 		queue.enqueue(14);
 		System.out.println(queue);
+		System.out.println("Front is " + queue.front());
+		System.out.println("Back is " + queue.back());
 		queue.dequeue();
 		System.out.println(queue);
 		System.out.println("Size is " + queue.size());
@@ -53,5 +74,4 @@ public class LinkedQueue<E> implements Queue<E> {
 		queue.enqueue(60);
 		System.out.println(queue);
 	}
-
 }

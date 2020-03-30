@@ -99,6 +99,7 @@ public class CircularlyLinkedList<E> implements List<E> {
 		//insert newest element (node)
 		Node<E> newest = new Node<E>(e, curr);
 		prev.setNext(newest);
+		size++;
 	}
 
 	@Override
@@ -155,17 +156,8 @@ public class CircularlyLinkedList<E> implements List<E> {
 		
 		else
 		{
-			E e = tail.getElement();
-			Node<E> find = tail;
-			
-			//need to find node before tail, to reconnect to new tail
-			for (int k = 0; k < size-1; k++)
-			{
-				find = find.getNext();
-			}
-			
-			tail = tail.getNext();
-			find.setNext(tail);
+			E e = tail.getNext().getElement();
+			tail.setNext(tail.getNext().getNext());
 			size--;
 			return e;
 		}
@@ -191,12 +183,13 @@ public class CircularlyLinkedList<E> implements List<E> {
 			Node<E> find = tail;
 		
 			//need to find node to reconnect to new tail
-			for (int k = 0; k < size-2; k++)
+			while (find.getNext() != tail)
 			{
 				find = find.getNext();
 			}
-			E e = find.getElement();
-			find.setNext(tail);
+			E e = tail.getElement();
+			find.setNext(tail.getNext());
+			tail = find;
 			size--;
 			return e;
 		}
@@ -244,10 +237,12 @@ public class CircularlyLinkedList<E> implements List<E> {
 
 	@Override
 	public void addFirst(E e) {
+		Node<E> newest = new Node<E>(e, null);
+		
 		if (tail == null)
 		{
-			Node<E> newest = new Node<E>(e, null);
 			tail = newest;
+			tail.setNext(tail);
 		}
 		
 		else
@@ -259,8 +254,8 @@ public class CircularlyLinkedList<E> implements List<E> {
 			{
 				find = find.getNext();
 			}
-			find.setNext(tail);
-			tail = find;
+			find.setNext(newest);
+			newest.setNext(tail);
 		}
 		size++;
 	}
@@ -271,24 +266,28 @@ public class CircularlyLinkedList<E> implements List<E> {
 		{
 			Node<E> newest = new Node<E>(e, null);
 			tail = newest;
+			tail.setNext(tail);
 		}
 		
 		else
 		{
-			Node<E> newest = new Node<E>(e, tail);
+			Node<E> newest = new Node<E>(e, null);
 			
-			Node<E> find = tail;
-			
-			//insert node just before tail
-			for (int k = 0; k < size-1; k++)
-			{
-				find = find.getNext();
-			}
-			
-			find.setNext(newest);
-			newest.setNext(tail);
+			newest.setNext(tail.getNext());
+			tail.setNext(newest);
+			tail = newest;
 		}
 		size++;
+	}
+	
+	public E first()
+	{
+		return tail.getNext().getElement();
+	}
+	
+	public E last()
+	{
+		return tail.getElement();
 	}
 
 	//make new entry point in list
@@ -310,12 +309,12 @@ public class CircularlyLinkedList<E> implements List<E> {
 		
 		else
 		{
-			Node<E> curr = tail;
+			Node<E> curr = tail.getNext();
 			while (true) {
 				str.append(curr.element);
 				str.append(" ");
 				curr = curr.getNext();
-				if (curr == tail) break;
+				if (curr == tail.getNext()) break;
 			}
 			return str.toString();
 		}
@@ -331,7 +330,7 @@ public class CircularlyLinkedList<E> implements List<E> {
 
 		System.out.println("Initial:\n" + ll);
 
-		System.out.println("Removed " + ll.removeFirst());
+		ll.removeFirst();
 		System.out.println("Removed First:\n" + ll);
 
 		ll.removeLast();

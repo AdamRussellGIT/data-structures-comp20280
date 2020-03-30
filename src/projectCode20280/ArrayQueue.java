@@ -1,7 +1,7 @@
 package projectCode20280;
 
 /*
-	The Array Queue implements the abstract Queue<T> class.
+	The Array Queue implements the Queue<T> interface.
 	The Queue has two pointers that act as the front and back of the queue.
 	The pointers move through the array as items are enqueued and dequeued.
 	The 'end of the array issue' is solved by using module to handle the size and pointers,

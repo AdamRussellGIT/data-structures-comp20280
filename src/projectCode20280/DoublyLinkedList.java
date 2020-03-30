@@ -51,7 +51,7 @@ public class DoublyLinkedList<E> implements List<E> {
 	
 	public DoublyLinkedList()
 	{
-		header = new Node<>(null, null, null);
+		header = new Node<>(null, null, trailer);
 		trailer = new Node<>(null, header, null);
 		header.setNext(trailer);
 		
@@ -83,14 +83,14 @@ public class DoublyLinkedList<E> implements List<E> {
 
 	@Override
 	public E get(int i) {
-		if(header == null || i < size-1)
+		if(header.getNext() == null || i > size-1)
 		{
 			throw new RuntimeException("cannot get");
 		}
 		
 		if(i < (size/2))
 		{
-			Node<E> curr = header;
+			Node<E> curr = header.getNext();
 			Node<E> prev = null;
 			
 			for(int k=0;k<i;k++)
@@ -104,7 +104,7 @@ public class DoublyLinkedList<E> implements List<E> {
 		
 		else
 		{
-			Node<E> curr = trailer;
+			Node<E> curr = trailer.getPrev();
 			Node<E> prev = null;
 			
 			for(int k=0;k>i;k--)
@@ -162,6 +162,7 @@ public class DoublyLinkedList<E> implements List<E> {
 		}
 		E e = prev.element;
 		prev.next = curr.next;
+		size--;
 		return e;
 	}
 

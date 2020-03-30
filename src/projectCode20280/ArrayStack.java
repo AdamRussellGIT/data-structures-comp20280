@@ -1,7 +1,7 @@
 package projectCode20280;
 
 /*
-	The Array Stack implements the abstract Stack<T> class.
+	The Array Stack implements the Stack<T> interface.
 	The Stack has a pointer to the top of the stack: top.
 	Items can only be pushed (inserted) or removed (popped) from the top of the stack.
 */
