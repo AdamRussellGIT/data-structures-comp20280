@@ -1,9 +1,7 @@
 package projectCode20280;
 import java.util.*;
 
-public class BracketChecker<E> extends LinkedStack<E> {
-	private LinkedStack<E> stack = new LinkedStack<E>();
-	
+public class BracketChecker<E> extends LinkedStack<E> {	
 	public BracketChecker()
 	{
 		;

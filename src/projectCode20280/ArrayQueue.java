@@ -1,6 +1,15 @@
 package projectCode20280;
 
+/*
+	The Array Queue implements the abstract Queue<T> class.
+	The Queue has two pointers that act as the front and back of the queue.
+	The pointers move through the array as items are enqueued and dequeued.
+	The 'end of the array issue' is solved by using module to handle the size and pointers,
+		creating a 'wrapping' effect.
+*/
+
 public class ArrayQueue<E> implements Queue<E> {
+	//default capacity
 	public static final int CAPACITY = 1000;
 	
 	private E[] data;
@@ -46,8 +55,10 @@ public class ArrayQueue<E> implements Queue<E> {
 		
 		else
 		{
+			//figure out where rear of array is (taking into account 'wrapping')
 			rear = ((front + size()) % CAPACITY);
 			data[rear] = e;
+			//move rear pointer along
 			rear++;
 		}
 	}
@@ -59,9 +70,20 @@ public class ArrayQueue<E> implements Queue<E> {
 
 	@Override
 	public E dequeue() {
-		E e = data[front];
-		front = ((front + 1) % CAPACITY);
-		return e;
+		if (this.isEmpty())
+		{
+			System.out.println("ERROR: NOTHING TO DEQUEUE");
+			return null;
+		}
+		
+		else
+		{
+			E e = data[front];
+		
+			//move front to second item
+			front = ((front + 1) % CAPACITY);
+			return e;
+		}
 	}
 	
 	public String toString()
@@ -89,6 +111,16 @@ public class ArrayQueue<E> implements Queue<E> {
 		System.out.println(stack);
 		System.out.println("First element in queue is " + stack.first());
 		stack.enqueue(60);
+		System.out.println(stack);
+		stack.dequeue();
+		System.out.println(stack);
+		stack.dequeue();
+		System.out.println(stack);
+		stack.dequeue();
+		System.out.println(stack);
+		System.out.println("Size is " + stack.size());
+		stack.dequeue();
+		stack.enqueue(70);
 		System.out.println(stack);
 	}
 

@@ -1,10 +1,19 @@
 package projectCode20280;
 
+/*
+	The Array Stack implements the abstract Stack<T> class.
+	The Stack has a pointer to the top of the stack: top.
+	Items can only be pushed (inserted) or removed (popped) from the top of the stack.
+*/
+
 public class ArrayStack<E> implements Stack<E> {
+	//default capacity
 	public static final int CAPACITY = 1000;
 	
 	private E[] data;
 	
+	//t points to the top of the tack
+	//it is an int referencing an index of the array used to represent the stack
 	private int t = -1;
 	
 	public ArrayStack()
@@ -96,15 +105,15 @@ public class ArrayStack<E> implements Stack<E> {
 	System.out.println(stack);
 	stack.push(6);
 	System.out.println(stack);
+	System.out.println("Size is " + stack.size());
 	stack.push(14);
 	System.out.println(stack);
 	stack.pop();
 	System.out.println(stack);
-	System.out.println(stack.top());
+	System.out.println("Size is " + stack.size());
+	System.out.println("Top is " + stack.top());
 	stack.push(60);
 	System.out.println(stack);
-	
-
 	}
 
 }

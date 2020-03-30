@@ -231,25 +231,14 @@ public class HeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
   
   public static void main(String[] args)
   {
-	  int size = 1;
-	   
-	  SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+	  HeapPriorityQueue<Integer, Integer> hpq = new HeapPriorityQueue<Integer, Integer>();
 	  
-	  for (int i = 0; i < size; i++)
-		{
-			sll.addLast((int) (Math.random() * (1000 - 1)) + 1);
-		}
+	  for (int i = 5; i > -1; i--)
+	  {
+		  hpq.insert(i, i);
+	  }
 	  
-	  System.out.println(sll.toString());
-	  
-	  long startTime = System.currentTimeMillis();
-	  PQSort(sll);
-	  long endTime = System.currentTimeMillis();
-	  
-	  long totalTime = endTime - startTime;
-	  
-	  System.out.println(sll.toString());
-	  System.out.println("Time take in milliseconds : " + totalTime);
+	  System.out.println(hpq.toString());
   }
 }
 
