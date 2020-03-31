@@ -1,5 +1,11 @@
 package projectCode20280;
 
+/*
+	Siminalr to a Queue, but allows access to both sides of the Queue.
+	To do this we use a DoublyLinkedList.
+	Implements the Dequeue<T> interface to allow provide all methods needed to access front and back of queue.
+*/
+
 public class LinkedDeque<E> implements Deque<E> {
 	private DoublyLinkedList<E> list = new DoublyLinkedList<>();
 	

@@ -4,6 +4,10 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+/*
+	Implementation of the HPQSort, with timing in nanoseconds.
+*/
+
 public class HPQSort
 {
 	public static void main(String[] args)

@@ -207,23 +207,6 @@ public class HeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
     }
   }
   
-  public static void PQSort(SinglyLinkedList<Integer> sll)
-  {
-	  HeapPriorityQueue<Integer, Integer> hpq = new HeapPriorityQueue<Integer, Integer>();
-	  
-	  while (!sll.isEmpty())
-	  {
-		  int e = sll.removeFirst();
-		  hpq.insert(e, e);
-	  }
-	  
-	  while(!hpq.isEmpty()) 
-	  {
-		int e = hpq.removeMin().getKey();
-		sll.addLast(e);
-	  }  
-  }
-  
   public String toString()
   {
 	  return Arrays.toString(heap.toArray());
@@ -238,6 +221,27 @@ public class HeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
 		  hpq.insert(i, i);
 	  }
 	  
+	  System.out.println("Initial Heap: ");
+	  System.out.println(hpq.toString());
+	  
+	  System.out.println("Insert 30: ");
+	  hpq.insert(30, 30);
+	  System.out.println(hpq.toString());
+	  
+	  System.out.println("Removing Minimum Key Element:");
+	  hpq.removeMin();
+	  System.out.println(hpq.toString());
+	  
+	  System.out.println("Insert 4:");
+	  hpq.insert(7, 7);
+	  System.out.println(hpq.toString());
+	  
+	  System.out.println("Insert -3");
+	  hpq.insert(-3, -3);
+	  System.out.println(hpq.toString());
+	  
+	  System.out.println("Insert 5");
+	  hpq.insert(-1, -1);
 	  System.out.println(hpq.toString());
   }
 }

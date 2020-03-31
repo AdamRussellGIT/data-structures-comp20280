@@ -2,7 +2,13 @@ package projectCode20280;
 
 import java.util.Iterator;
 
-
+/*
+	DoublyLinkedList implements the List<T> interface.
+	Very similar to a SinglyLinkedList, but in the DLL we also have 
+		a link to the previous node, allowing traversal in both directions.
+	Also allows direct access to the end of the list, making it more efficient
+		in some cases.
+*/
 
 
 public class DoublyLinkedList<E> implements List<E> {
@@ -51,7 +57,7 @@ public class DoublyLinkedList<E> implements List<E> {
 	
 	public DoublyLinkedList()
 	{
-		header = new Node<>(null, null, trailer);
+		header = new Node<>(null, null, null);
 		trailer = new Node<>(null, header, null);
 		header.setNext(trailer);
 		
@@ -70,7 +76,7 @@ public class DoublyLinkedList<E> implements List<E> {
 
 	@Override
 	public boolean isEmpty() {
-		if (header == null)
+		if (size == 0)
 		{
 			return true;
 		}
@@ -83,16 +89,19 @@ public class DoublyLinkedList<E> implements List<E> {
 
 	@Override
 	public E get(int i) {
+		//check if its possible to get i
 		if(header.getNext() == null || i > size-1)
 		{
 			throw new RuntimeException("cannot get");
 		}
 		
+		//depending on where i is, choose fastest path
 		if(i < (size/2))
 		{
 			Node<E> curr = header.getNext();
 			Node<E> prev = null;
 			
+			//find correct position
 			for(int k=0;k<i;k++)
 			{
 				prev = curr;
@@ -119,7 +128,7 @@ public class DoublyLinkedList<E> implements List<E> {
 
 	@Override
 	public void add(int i, E e) {
-		if(i < size-1)
+		if(i > size-1)
 		{
 			throw new RuntimeException("cannot add");
 		}
@@ -127,12 +136,14 @@ public class DoublyLinkedList<E> implements List<E> {
 		Node<E> curr = header;
 		Node<E> prev = null;
 		
+		//find correct position
 		for(int k=0;k<i;k++)
 		{
 			prev = curr;
 			curr = curr.next;
 		}
 		
+		//add in node
 		Node<E> newest = new Node<E>(e, curr.next, prev);
 		prev.next = newest;
 		newest.next = curr;
@@ -149,6 +160,7 @@ public class DoublyLinkedList<E> implements List<E> {
 		Node<E> prev = header;
 		int k = 1;
 		
+		//find the correct node to remove
 		while (curr != null && k != i)
 		{
 			prev = curr;
@@ -160,6 +172,7 @@ public class DoublyLinkedList<E> implements List<E> {
 		{
 			throw new RuntimeException("cannot delete");
 		}
+		
 		E e = prev.element;
 		prev.next = curr.next;
 		size--;
@@ -188,7 +201,7 @@ public class DoublyLinkedList<E> implements List<E> {
 		
 		else
 		{
-			return remove(size-1);
+			return remove(size);
 		}
 	}
 	

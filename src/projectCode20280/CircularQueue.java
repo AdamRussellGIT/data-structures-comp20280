@@ -1,12 +1,12 @@
 package projectCode20280;
 
-/*
-	CircularQueue implements the Queue<T> interface.
-	It is an improvement on a regular LinkedQueue as it allows for faster access to
-		elements near the end of the list, and also has quick access to items at both the
-			beginning and end of the queue.
-	Otherwise it performs in a very similar fashion to the LinkedQueue class.
-*/
+/**
+ * Realization of a circular FIFO queue as an adaptation of a
+ * CircularlyLinkedList. This provides one additional method not part of the
+ * general Queue interface. A call to rotate() is a more efficient simulation of
+ * the combination enqueue(dequeue()). All operations are performed in constant
+ * time.
+ */
 
 public class CircularQueue<E> implements Queue<E> {
 	private CircularlyLinkedList<E> list;

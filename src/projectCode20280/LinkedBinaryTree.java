@@ -2,6 +2,18 @@ package projectCode20280;
 
 import java.util.ArrayList;
 
+/*
+	The LinkedBinaryTree class extends comparable to allow for comparing of
+		whatever type of tree needs to be created e.g. Strings, Integers, Doubles etc.
+	It also extends AbstractBinaryTree<T> to allow access to abstract traversal methods among others,
+		to make accessing and navigating the tree easier.
+		
+	The LinkedBinaryTree is a binary tree represented using nodes, where each node has a
+		parent, a left child and a right child (these can be null).
+	Nodes are added based on an order such that the key of a left node is always less than than the
+		key of its parent node. Greater than is place on the right node.
+*/
+
 /**
  * Concrete implementation of a binary tree using a node-based, linked structure.
  */
@@ -177,6 +189,7 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 		  throw new IllegalStateException("Tree is not empty, cannot add a root!");
 	  }
 
+	  //adding a root means it will be the only node, so parent child and right are null
 	  root = createNode(e, null, null, null);
 	  size = 0;
 	  return root;
@@ -197,6 +210,9 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 		return root;
 	}
 	  
+	//figure out whether key of node is < or > than parent node
+	// continue process until we reach a node with either a null left or null right node, depending
+	//create new node with last node in recursive stack as parent, return up the stack
 	if (e.compareTo(p.getElement()) < 0)
 	{
 		if (p.getLeft() != null)
@@ -306,16 +322,20 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 	
 	if (!t1.isEmpty())
 	{
+		//attach tree to node
 		t1.root.setParent(node);
 		node.setLeft(t1.root);
+		//java garbage collector knows to delete this tree now
 		t1.root = null;
 		t1.size = 0;
 	}
 	
 	if (!t2.isEmpty())
 	{
+		//attach tree to node
 		t2.root.setParent(node);
 		node.setRight(t2.root);
+		//java garbage collector knows to delete this tree now
 		t2.root = null;
 		t2.size = 0;
 	}
@@ -337,6 +357,7 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 		throw new IllegalArgumentException("This node has 2 children!");
 	}
 	
+	//check which side child node is on and set it to child
 	Node<E> child = (node.getLeft() != null ? node.getLeft(): node.getRight());
 	
 	if (child != null)
@@ -366,6 +387,7 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 	
 	size--;
 	
+	//removing node from memory
 	E temp = node.getElement();
 	node.setElement(null);
 	node.setLeft(null);
@@ -395,6 +417,21 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 	  }
 	  System.out.println("bt: " + bt.size() + " " + bt);
 	  
+	  System.out.println("Insert 3");
+	  bt.insert(3);
+	  System.out.println(bt);
+	  
+	  System.out.println("Insert 16");
+	  bt.insert(16);
+	  System.out.println(bt);
+	  
+	  System.out.println("Insert 2");
+	  bt.insert(2);
+	  System.out.println(bt);
+	  
+	  System.out.println("Insert 41");
+	  bt.insert(41);
+	  System.out.println(bt);
   }
 } 
 

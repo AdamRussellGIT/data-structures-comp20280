@@ -41,25 +41,37 @@ public class LinkedCircularQueue<E> implements Queue<E> {
 		return list.removeFirst();
 	}
 	
+	public E front()
+	{
+		return first();
+	}
+	
+	public E back()
+	{
+		return list.last();
+	}
+	
 	public String toString()
 	{
 		return list.toString();
 	}
 	
 	public static void main(String[] args) {
-		LinkedCircularQueue<Integer> stack = new LinkedCircularQueue<Integer>();	
-		stack.enqueue(3);
-		System.out.println(stack);
-		stack.enqueue(6);
-		System.out.println(stack);
-		stack.enqueue(14);
-		System.out.println(stack);
-		stack.dequeue();
-		System.out.println(stack);
-		System.out.println("Size is " + stack.size());
-		System.out.println("First element is " + stack.first());
-		stack.enqueue(60);
-		System.out.println(stack);
+		CircularQueue<Integer> queue = new CircularQueue<Integer>();	
+		queue.enqueue(3);
+		System.out.println(queue);
+		queue.enqueue(6);
+		System.out.println(queue);
+		queue.enqueue(14);
+		System.out.println(queue);
+		System.out.println("Front is " + queue.front());
+		System.out.println("Back is " + queue.back());
+		queue.dequeue();
+		System.out.println(queue);
+		System.out.println("Size is " + queue.size());
+		System.out.println("First element is " + queue.first());
+		queue.enqueue(60);
+		System.out.println(queue);
 	}
 
 }
