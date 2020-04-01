@@ -77,6 +77,13 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 	  {
 		  return this.right;
 	  }
+	  
+	  public String toString()
+	  {
+		  StringBuilder sb = new StringBuilder();
+		  sb.append(element);
+		  return sb.toString();
+	  }
   } 
 
   /** Factory function to create a new node storing element e. */
@@ -146,7 +153,7 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
   @Override
   public Position<E> parent(Position<E> p) throws IllegalArgumentException {
 	Node<E> node = validate(p);
-	return node.getParent();
+	return node.parent;
   }
 
   /**
@@ -159,7 +166,7 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
   @Override
   public Position<E> left(Position<E> p) throws IllegalArgumentException {
 	Node<E> node = validate(p);
-	return node.getLeft();
+	return node.left;
   }
 
   /**
@@ -172,7 +179,7 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
   @Override
   public Position<E> right(Position<E> p) throws IllegalArgumentException {
 	Node<E> node = validate(p);
-	return node.getRight();
+	return node.right;
   }
 
   // update methods supported by this class
@@ -191,15 +198,13 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 
 	  //adding a root means it will be the only node, so parent child and right are null
 	  root = createNode(e, null, null, null);
-	  size = 0;
+	  size = 1;
 	  return root;
   }
 
   public void insert(E e){
       //recursively add from root
       addRecursive(root, e);
-      size++;
-
   }
   
   //recursively add Nodes to binary tree in proper position
@@ -222,6 +227,7 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 		
 		Node<E> node = createNode(e, p, null, null);
 		p.setLeft(node);
+		size++;
 		return node;
 	}
 	
@@ -234,6 +240,7 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 		
 		Node<E> node = createNode(e, p, null, null);
 		p.setRight(node);
+		size++;
 		return node;
 	}
   }
@@ -257,6 +264,7 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 	}
 	
 	Node<E> child = createNode(e, parent, null, null);
+	parent.setLeft(child);
 	size++;
 	return child;
   }
@@ -279,6 +287,7 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 	}
 	
 	Node<E> child = createNode(e, parent, null, null);
+	parent.setRight(child);
 	size++;
 	return child;
   }
@@ -301,7 +310,7 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
   }
 
   /**
-   * Attaches trees t1 and t2, respectively, as the left and right subtree of the
+   * Attaches trees t1 and t2, respectively, as the left and right subt2ree of the
    * leaf Position p. As a side effect, t1 and t2 are set to empty trees.
    *
    * @param p   a leaf of the tree
@@ -411,27 +420,52 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
   public static void main(String [] args) {
 	  LinkedBinaryTree<Integer> bt = new LinkedBinaryTree<Integer>();
 	  
+	  Position<Integer> root = bt.addRoot(12);
+	  Position<Integer> p1 = bt.addLeft(root,  25);
+	  Position<Integer> p2 = bt.addRight(root, 31);
+	  
+	  Position<Integer> p3 = bt.addLeft(p1, 58);
+	  bt.addRight(p1, 36);
+	  
+	  Position<Integer> p5 = bt.addLeft(p2, 42);
+	  bt.addRight(p2, 90);
+	  
+	  Position<Integer> p4 = bt.addLeft(p3, 62);
+	  bt.addRight(p3,75);
+	  
+	  System.out.println("bt inorder " + bt.size() + " " + bt.inorder());
+	  System.out.println("bt preorder " + bt.size() + " " + bt.preorder());
+	  
+	  System.out.println("NumChildren of root: " + bt.numChildren(bt.root));
+	  System.out.println("bt2 height: " + bt.height(bt.root));
+	  System.out.println("bt2 depth " + bt.depth(bt.root));
+	  System.out.println("bt2 depth 62: " + bt.depth(p4));
+	  System.out.println("bt2 depth 45: " + bt.depth(p5));
+	  
+	  System.out.println("--------------------------------------------------------------------------------------");
+	  
+	  LinkedBinaryTree<Integer> bt2 = new LinkedBinaryTree<Integer>();
 	  int [] arr = {12, 25, 31, 58, 36, 42, 90, 62, 75};
 	  for(int i : arr) {
-		  bt.insert(i);
+		  bt2.insert(i);
 	  }
-	  System.out.println("bt: " + bt.size() + " " + bt);
+	  System.out.println("bt2: " + bt2.size() + " " + bt2);
 	  
 	  System.out.println("Insert 3");
-	  bt.insert(3);
-	  System.out.println(bt);
+	  bt2.insert(3);
+	  System.out.println(bt2);
 	  
 	  System.out.println("Insert 16");
-	  bt.insert(16);
-	  System.out.println(bt);
+	  bt2.insert(16);
+	  System.out.println(bt2);
 	  
 	  System.out.println("Insert 2");
-	  bt.insert(2);
-	  System.out.println(bt);
+	  bt2.insert(2);
+	  System.out.println(bt2);
 	  
 	  System.out.println("Insert 41");
-	  bt.insert(41);
-	  System.out.println(bt);
+	  bt2.insert(41);
+	  System.out.println(bt2);
   }
 } 
 
