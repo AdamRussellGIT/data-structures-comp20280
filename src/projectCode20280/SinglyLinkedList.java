@@ -2,6 +2,17 @@ package projectCode20280;
 
 import java.util.Iterator;
 
+/*
+	The SinglyLinkedList<E> class implements the List<T> interface.
+	
+	Simply a collection of nodes containing information (specified by generic T) that are
+		sequentially connected (e.g. each node has a pointer to the next node in the list).
+		
+	Contains an inner Node<E> class where a Node is defined with some basic getters and setters.
+	
+	
+*/
+
 public class SinglyLinkedList<E> implements List<E> {
 	Node<E> head = null;
 	int size = 0;
@@ -34,6 +45,9 @@ public class SinglyLinkedList<E> implements List<E> {
 		}
 	}
 	
+	/**
+	 * Returns true if the list is empty, false otherwise.
+	 */
 	@Override
 	public boolean isEmpty() {
 		if (head == null)
@@ -47,6 +61,10 @@ public class SinglyLinkedList<E> implements List<E> {
 		}
 	}
 
+	/**
+	 * Returns but does not remove the element stored at position i in the list.
+	 * @param i Position of element being sought (0 for first element, 1 for second etc).
+	 */
 	@Override
 	public E get(int i) {
 		if (head == null || i > size)
@@ -57,6 +75,7 @@ public class SinglyLinkedList<E> implements List<E> {
 		Node<E> curr = head;
 		Node<E> prev = null; 
 
+		//find currect position by looping through, moving pointers
 		for(int k=0;k<i;k++)
 		{
 			prev = curr;
@@ -66,11 +85,22 @@ public class SinglyLinkedList<E> implements List<E> {
 		return curr.element;
 	}
 
+	/**
+	 * Adds an element at a certain position in the list.
+	 * @param i Position the element is to be added.
+	 * @param e Element to be added.
+	 */
 	@Override
 	public void add(int i, E e) {
-		if(i < size-1)
+		if(i > size-1)
 		{
 			throw new RuntimeException("cannot add");
+		}
+		
+		if (i == 0)
+		{
+			addFirst(e);
+			return;
 		}
 		
 		Node<E> curr = head;
@@ -83,11 +113,16 @@ public class SinglyLinkedList<E> implements List<E> {
 		}
 		
 		Node<E> newest = new Node<E>(e, curr.next);
+		//insert in between the two nodes either side of i
 		prev.next = newest;
 		newest.next = curr;
 		size++;
 	}
 
+	/**
+	 * Removes AND Returns the element at position i.
+	 * @param i Position of element to be removed and returned.
+	 */
 	@Override
 	public E remove(int i) {
 		if (head == null)
@@ -95,15 +130,17 @@ public class SinglyLinkedList<E> implements List<E> {
 			throw new RuntimeException("cannot delete");
 		}
 		
-		if (i == 1)
+		if (i == 0)
 		{
-			this.removeFirst();
+			E e = removeFirst();
+			return e;
 		}
 		
 		Node<E> curr = head;
 		Node<E> prev = null;
-		int k = 1;
+		int k = 0;
 		
+		//find either end of list or correct position
 		while (curr != null && k != i)
 		{
 			prev = curr;
@@ -115,12 +152,16 @@ public class SinglyLinkedList<E> implements List<E> {
 		{
 			throw new RuntimeException("cannot delete");
 		}
-		E e = prev.element;
+				
+		E e = prev.getElement();
 		prev.next = curr.next;
 		size--;
 		return e;
 	}
 	
+	/**
+	 * Inner Ierator Class used to print out the state of the SinglyLinkedList
+	 */
 	private class ListIterator implements Iterator<E>
 	{
 		Node<E> curr;
@@ -150,12 +191,17 @@ public class SinglyLinkedList<E> implements List<E> {
 		return new ListIterator();	
 	}
 
+	/**
+	 * Returns the number of elements in the list
+	 */
 	@Override
 	public int size() {
 		return this.size;
 	}	
 	
-
+	/**
+	 * Removes AND Returns the first element of the list
+	 */
 	@Override
 	public E removeFirst() {
 		E temp = head.element;
@@ -164,6 +210,9 @@ public class SinglyLinkedList<E> implements List<E> {
 		return temp;
 	}
 
+	/**
+	 * Removes AND Returns the last element of the list.
+	 */
 	@Override
 	public E removeLast() {
 		if (head.getNext() == null)
@@ -192,6 +241,10 @@ public class SinglyLinkedList<E> implements List<E> {
 		}
 	}
 
+	/**
+	 * Adds an element to the start of the list
+	 * @param e Element to be added
+	 */
 	@Override
 	public void addFirst(E e) {
 		head = new Node<E>(e, head);
@@ -199,6 +252,10 @@ public class SinglyLinkedList<E> implements List<E> {
 		
 	}
 
+	/**
+	 * Adds an element to the end of the list
+	 * @param e Element to be added
+	 */
 	@Override
 	public void addLast(E e) {
 		Node<E> newest = new Node<E>(e, null);
@@ -211,6 +268,7 @@ public class SinglyLinkedList<E> implements List<E> {
 		
 		else
 		{
+			//find the last node in the list
 			while (last.getNext() != null)
 			{
 				last = last.getNext();
@@ -222,6 +280,9 @@ public class SinglyLinkedList<E> implements List<E> {
 		size++;
 	}
 	
+	/**
+	 * Reverses the order of elements in the list.
+	 */
 	public void reverse()
 	{
 		Node<E> temp = head;
@@ -231,12 +292,18 @@ public class SinglyLinkedList<E> implements List<E> {
 			return;
 		}
 		
+		//add the elements of each gradually smaller list onto stack
 		this.removeFirst();
 		this.reverse();
+		//add each element stored on stack as the last element of the list (reversing the order)
 		this.addLast(temp.getElement());
 		
 	}
 	
+	/**
+	 * Returns a copy of a SinglyLinkedList
+	 * @return A new SinglyLinkedList
+	 */
 	public SinglyLinkedList<E> recursiveCopy()
 	{	
 		if (this.size == 0)
@@ -277,16 +344,27 @@ public class SinglyLinkedList<E> implements List<E> {
 			//sll.addLast(s);
 		}
 		System.out.println(sll.toString());
+		System.out.println("Size is " + sll.size());
+		
+		sll.add(0,  "HI");
 
+		System.out.println("Remove First: ");
 		sll.removeFirst();
 		System.out.println(sll.toString());
 		
+		System.out.println("Remove Last: ");
 		sll.removeLast();
 		System.out.println(sll.toString());
 
-		sll.remove(2);
+		System.out.println("Remove (0): ");
+		sll.remove(0);
 		System.out.println(sll.toString());
 		
+		System.out.println("Remove (1): ");
+		sll.remove(1);
+		System.out.println(sll.toString());
+		
+		System.out.println("Reverse: ");
 		sll.reverse();
 		System.out.println(sll.toString());
 		

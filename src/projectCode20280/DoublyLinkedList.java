@@ -90,7 +90,7 @@ public class DoublyLinkedList<E> implements List<E> {
 	@Override
 	public E get(int i) {
 		//check if its possible to get i
-		if(header.getNext() == null || i > size-1)
+		if(header.getNext() == null || i > size)
 		{
 			throw new RuntimeException("cannot get");
 		}
@@ -281,6 +281,8 @@ public class DoublyLinkedList<E> implements List<E> {
            
            ll.removeFirst();
            System.out.println(ll);
+           
+           System.out.println(ll.getLast());
 
            ll.removeLast();
            System.out.println(ll);

@@ -4,6 +4,10 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.LinkedList;
 
+/*
+	Implementation of PQSort
+*/
+
 public class PQSort 
 {
 	public PQSort()
@@ -11,21 +15,13 @@ public class PQSort
 		
 	}
 	
-	public static void fillRandom(SinglyLinkedList<Integer> ll, int n)
-	{
-		Random rnd = new Random();
-		
-		for (int i = 0; i < n; i++)
-		{
-			ll.addLast(rnd.nextInt());
-		}
-	}
-	
 	public static Integer removeMin(LinkedList<Integer> ll)
 	{
 		int min_idx = 0;
 		Integer min_val = ll.get(min_idx);
 		
+		
+		//simple loop goes through list and finds minimum element
 		for (int i = 1; i < ll.size(); i++)
 		{
 			Integer curr = ll.get(i);
