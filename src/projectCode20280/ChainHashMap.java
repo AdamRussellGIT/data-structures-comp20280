@@ -101,6 +101,7 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 			return null;
 		}
 		
+		//keep track of size
 		int oldSize = bucket.size();
 		
 		V temp = bucket.remove(k);
@@ -123,6 +124,7 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 		{
 			if (table[i] != null)
 			{
+				//for each element in the table, add it to a returnable iterable arraylist
 				for (Entry<K, V> element : table[i].entrySet())
 				{
 					items.add(element);
@@ -139,7 +141,6 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 	}
 	
 	public static void main(String[] args) {
-		//HashMap<Integer, String> m = new HashMap<Integer, String>();
 		ChainHashMap<Integer, String> m = new ChainHashMap<Integer, String>();
 		
 		
@@ -148,9 +149,28 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 		m.put(11, "Eleven");
 		m.put(20, "Twenty");
 		
-		System.out.println("m: " + m);
+		System.out.println("Initial Map: ");
+		System.out.println("m: " + m + "\n");
 		
+		System.out.println("Remove Key = 11: ");
 		m.remove(11);
-		System.out.println("m: " + m);
+		System.out.println("m: " + m + "\n");
+		
+		System.out.println("Insert <1, Won>: ");
+		m.put(1, "Won");
+		System.out.println("m: " + m + "\n");
+		
+		System.out.println("Get Key = 10: " + "\n" + m.get(10));
+		
+		System.out.print("\n");
+		
+		System.out.println("Insert <70, Seventy> and <73, Seventy Three>: ");
+		m.put(70, "Seventy");
+		m.put(73, "Seventy Three");
+		System.out.println("m: " + m + "\n" + "Size currently: " + m.size() + "\n");
+		
+		System.out.println("Remove Key = 90: ");
+		m.remove(90);
+		System.out.println("m: " + m + "\n");
 	}
 }
