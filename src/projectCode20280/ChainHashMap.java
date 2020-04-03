@@ -30,7 +30,7 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 	@Override
 	@SuppressWarnings({ "unchecked" })
 	protected void createTable() {
-
+		table = (UnsortedTableMap<K, V>[]) new UnsortedTableMap[capacity];
 	}
 
 	/**
@@ -43,7 +43,14 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 	 */
 	@Override
 	protected V bucketGet(int h, K k) {
-		return null;
+		UnsortedTableMap<K, V> bucket = table[h];
+		
+		if (bucket == null)
+		{
+			return null;
+		}
+		
+		return bucket.get(k);
 	}
 
 	/**
@@ -57,7 +64,24 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 	 */
 	@Override
 	protected V bucketPut(int h, K k, V v) {
-		return null;
+		UnsortedTableMap<K, V> bucket = table[h];
+		
+		//if no bucket create it
+		if (bucket == null)
+		{
+			bucket = new UnsortedTableMap<>();
+			table[h] = bucket;
+		}
+		
+		//keep track of size
+		int oldSize = bucket.size();
+		
+		V temp = bucket.put(k, v);
+		
+		//size could be bigger now
+		n += (bucket.size() - oldSize);
+		
+		return temp;
 	}
 
 	/**
@@ -70,7 +94,20 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 	 */
 	@Override
 	protected V bucketRemove(int h, K k) {
-		return null;
+		UnsortedTableMap<K, V> bucket = table[h];
+		
+		if (bucket == null)
+		{
+			return null;
+		}
+		
+		int oldSize = bucket.size();
+		
+		V temp = bucket.remove(k);
+		
+		n -= (oldSize - bucket.size());
+		
+		return temp;
 	}
 
 	/**
@@ -80,12 +117,32 @@ public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
 	 */
 	@Override
 	public Iterable<Entry<K, V>> entrySet() {
-		return null;
+		ArrayList<Entry<K, V>> items = new ArrayList<>();
+		
+		for (int i = 0; i < capacity; i++)
+		{
+			if (table[i] != null)
+			{
+				for (Entry<K, V> element : table[i].entrySet())
+				{
+					items.add(element);
+				}
+			}
+		}
+		
+		return items;
+	}
+	
+	public String toString()
+	{
+		return entrySet().toString();
 	}
 	
 	public static void main(String[] args) {
 		//HashMap<Integer, String> m = new HashMap<Integer, String>();
 		ChainHashMap<Integer, String> m = new ChainHashMap<Integer, String>();
+		
+		
 		m.put(1, "One");
 		m.put(10, "Ten");
 		m.put(11, "Eleven");
