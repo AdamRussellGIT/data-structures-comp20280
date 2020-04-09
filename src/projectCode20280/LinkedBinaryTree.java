@@ -416,6 +416,7 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 	  sb.append("]");
 	  return sb.toString();
   }
+ 
   
   public static void main(String [] args) {
 	  LinkedBinaryTree<Integer> bt = new LinkedBinaryTree<Integer>();

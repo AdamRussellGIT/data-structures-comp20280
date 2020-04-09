@@ -42,6 +42,12 @@ public abstract class AbstractPriorityQueue<K,V> implements PriorityQueue<K,V> {
     {
   	  return new String() + this.k + " ";
     }
+
+	@Override
+	public int compareTo(Entry<K, V> o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
   } //----------- end of nested PQEntry class -----------
   
 
