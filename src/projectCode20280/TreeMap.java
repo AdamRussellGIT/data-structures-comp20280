@@ -57,8 +57,7 @@ public class TreeMap<K extends Comparable<K>, V> extends AbstractSortedMap<K, V>
 	}
 
 	protected Position<Entry<K, V>> sibling(Position<Entry<K, V>> p) {
-		// TODO
-		return null;
+		return tree.sibling(p);
 	}
 
 	protected boolean isRoot(Position<Entry<K, V>> p) {
@@ -276,7 +275,28 @@ public class TreeMap<K extends Comparable<K>, V> extends AbstractSortedMap<K, V>
 	 */
 	@Override
 	public Entry<K, V> ceilingEntry(K key) throws IllegalArgumentException {
-		// TODO
+		checkKey(key);
+		
+		Position<Entry<K, V>> p = treeSearch(root(), key);
+		
+		if (isExternal(p))
+		{
+			return p.getElement();
+		}
+		
+		while (!isRoot(p))
+		{
+			if (p == right(parent(p)))
+			{
+				return parent(p).getElement();
+			}
+			
+			else
+			{
+				p = parent(p);
+			}
+		}
+		
 		return null;
 	}
 
@@ -361,8 +381,30 @@ public class TreeMap<K extends Comparable<K>, V> extends AbstractSortedMap<K, V>
 	 */
 	@Override
 	public Entry<K, V> higherEntry(K key) throws IllegalArgumentException {
-		// TODO
-		return null;
+		checkKey(key); // may throw IllegalArgumentException
+		
+		Position<Entry<K,V>> p = treeSearch(root( ), key);
+		
+		if (isInternal(p) && isInternal(right(p)))
+		{
+			return treeMin(right(p)).getElement( ); // this is the predecessor to p
+		}
+			// otherwise, we had failed search, or match with no left child
+		while (!isRoot(p)) 
+		{
+			if (p == left(parent(p)))
+			{
+				return parent(p).getElement( ); // parent has next lesser key
+			}
+				
+			else
+			{
+				p = parent(p);
+			}
+		
+		}
+		
+		return null; // no such lesser key exists
 	}
 
 	// Support for iteration
@@ -428,6 +470,11 @@ public class TreeMap<K extends Comparable<K>, V> extends AbstractSortedMap<K, V>
 			}
 		}
 	}
+	
+	public String toString()
+	{
+		return tree.toString();
+	}
 
 	// remainder of class is for debug purposes only
 	/** Prints textual representation of tree structure (for debug purpose only). */
@@ -449,7 +496,8 @@ public class TreeMap<K extends Comparable<K>, V> extends AbstractSortedMap<K, V>
 
 	public static void main(String[] args) {
 		TreeMap<Integer, Integer> treeMap = new TreeMap<Integer, Integer>();
-		
+		BinaryTreePrinter<Entry<Integer, Integer>> btp = new BinaryTreePrinter<>(treeMap.tree);
+			
 		Random rnd = new Random();
 		int n = 16;
 		java.util.List<Integer> rands = rnd.ints(1, 1000).limit(n).distinct().boxed().collect(Collectors.toList());
@@ -458,10 +506,15 @@ public class TreeMap<K extends Comparable<K>, V> extends AbstractSortedMap<K, V>
 			treeMap.put(i, i);
 		}
 		
-		System.out.println("tree entries: " + treeMap.entrySet());
+		System.out.println(treeMap.entrySet());
+		System.out.println(btp.print());
 		
-		treeMap.remove(rands.get(1));
+		Integer i = rands.get(3);
+		System.out.println(i + "floorEntry = " + treeMap.floorEntry(i));
+		
+		/*treeMap.remove(rands.get(1));
 
-		System.out.println("tree entries after removal: " + treeMap.entrySet());
+		System.out.println("After random removal:  " + treeMap.entrySet());
+		System.out.println("After random removal: \n" + btp.print());*/
 	}
 }
