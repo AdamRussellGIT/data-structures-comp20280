@@ -9,6 +9,7 @@ This is a repository that I maintained and updated throughout the semester for D
 ### *Lists*
 
 #### SinglyLinkedList
+This class contains an implementation of a SinglyLinkedList, and contains a main method to test the functionality of the list.
 
 #### DoublyLinkedList
 
