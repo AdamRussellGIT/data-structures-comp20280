@@ -30,6 +30,11 @@ public class LinkedStack<E> implements Stack<E> {
 		return list.isEmpty();
 	}
 
+	/**
+	 * Add element to the top of the stack (end of the list)
+	 * 
+	 * @param e Element to be added
+	 */
 	@Override
 	public void push(E e) {
 		list.addLast(e);
@@ -40,6 +45,11 @@ public class LinkedStack<E> implements Stack<E> {
 		return list.get(size()-1);
 	}
 
+	/**
+	 * Removes and returns and element from the top of the stack
+	 * 
+	 * @return E Element being removed
+	 */
 	@Override
 	public E pop() {
 		E e = list.removeLast();

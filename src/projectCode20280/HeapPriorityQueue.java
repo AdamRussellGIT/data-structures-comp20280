@@ -81,6 +81,7 @@ public class HeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
   /** Moves the entry at index j higher, if necessary, to restore the heap property. */
   protected void upheap(int j)
   {
+	  //bubble up the heap as long as condition holds
 	  while (j > 0)
 		{
 			int p = parent(j);
@@ -104,6 +105,7 @@ public class HeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
 			int leftIndex = left(j);
 			int smallChildIndex = leftIndex;
 			
+			//check for right smaller
 			if (hasRight(j))
 			{
 				int rightIndex = right(j);
@@ -114,6 +116,7 @@ public class HeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
 				}
 			}
 			
+			//move down if needed
 			if (compare(heap.get(smallChildIndex), heap.get(j)) >= 0)
 			{
 				break;

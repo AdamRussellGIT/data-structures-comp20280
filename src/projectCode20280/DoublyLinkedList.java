@@ -63,6 +63,12 @@ public class DoublyLinkedList<E> implements List<E> {
 		
 	}
 	
+	/**
+	 * Adds an element in between two specified nodes.
+	 * @param e Element to be added
+	 * @param predecessor Node before
+	 * @param successor Node after
+	 */
 	private void addBetween(E e, Node<E> predecessor, Node<E> successor) {
 		Node<E> newest = new Node<E>(e, predecessor, successor);
 		predecessor.setNext(newest);
@@ -87,6 +93,11 @@ public class DoublyLinkedList<E> implements List<E> {
 		}
 	}
 
+	/**
+	 * Returns but does not remove the element at position i
+	 * 
+	 * @param i Position of element to be retrieved
+	 */
 	@Override
 	public E get(int i) {
 		//check if its possible to get i
@@ -126,6 +137,12 @@ public class DoublyLinkedList<E> implements List<E> {
 		}
 	}
 
+	/**
+	 * Adds an element e at position i.
+	 * 
+	 * @param i Position in list where element is to be added
+	 * @param e Element to be added
+	 */
 	@Override
 	public void add(int i, E e) {
 		if(i > size-1)
@@ -149,6 +166,12 @@ public class DoublyLinkedList<E> implements List<E> {
 		newest.next = curr;
 	}
 
+	/**
+	 * Removes and returns element at position i
+	 * 
+	 * @param i Position of element to be removed
+	 * @return E Element being removed
+	 */
 	@Override
 	public E remove(int i) {
 		if (header == null)

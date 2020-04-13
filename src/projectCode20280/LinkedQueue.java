@@ -29,6 +29,11 @@ public class LinkedQueue<E> implements Queue<E> {
 		return list.isEmpty();
 	}
 
+	/**
+	 * Add an element to the queue (end of the list)
+	 * 
+	 * @param e Element to be added
+	 */
 	@Override
 	public void enqueue(E e) {
 		list.addLast(e);
@@ -39,6 +44,11 @@ public class LinkedQueue<E> implements Queue<E> {
 		return list.get(0);
 	}
 
+	/**
+	 * Remove and return an element from the queue
+	 * 
+	 * @return E Element that is removed
+	 */
 	@Override
 	public E dequeue() {
 		return list.removeFirst();
