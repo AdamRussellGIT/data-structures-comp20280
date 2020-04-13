@@ -1,10 +1,85 @@
+# *Data Structures Portfolio - Adam Russell*
 
-Upstream Repo for COMP20280
+This is a repository that I maintained and updated throughout the semester for Data Structures COMP20280. It contains all data structures developed over the course of the moduel in practicals, along with some etc classes that I completed in my own time, which will be outlined below.
 
-This repo contains the starter code for the Data Structures repository.
+# Navigating The Repo
 
-This repo will be updated during the semester.
+## *Required Classes*
 
+### *Lists*
 
+#### SinglyLinkedList
+This class contains an implementation of a SinglyLinkedList, and contains a main method to test the functionality of the list.
 
+#### DoublyLinkedList
+
+#### CircularlyLinkedList
+
+### *Queues*
+
+#### ArrayQueue
+
+#### CircularQueue
+
+#### LinkedQueue
+
+### *Stacks*
+
+#### ArrayStack
+
+#### LinkedStack
+
+### *Deques*
+
+#### LinkedDeque
+
+### *Trees*
+
+#### LinkedBianryTree
+
+### *Prioirty Queues*
+
+#### HeapPriorityQueue
+
+### *Hash Maps*
+
+#### UnsortedTableMap
+
+#### ChainHashMap
+
+### *Binary Search Trees*
+
+#### TreeMap
+
+#### AVLTreeMap
+
+#### SplayTreeMap
+
+## *Extra Classes*
+
+### *Sorting*
+
+#### BubbleSort (Recursive)
+
+#### MergeSort (Recursive)
+
+#### SelectionSort (Recursive)
+
+#### HeapPrioirtQueueSort
+
+### *Miscellaneous*
+
+#### BracketChecker
+
+#### Collatz
+
+#### WordCountCHM
+
+# Versioning
+
+Regular commits were made over the course of the module, as practicals were completed and as certain data structures and files were edited and refined.
+
+# Authors
+
+* **Adam Russell** - [AdamRussellGIT](https://github.com/AdamRussellGIT)
 
