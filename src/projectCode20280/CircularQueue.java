@@ -26,6 +26,9 @@ public class CircularQueue<E> implements Queue<E> {
 		return list.isEmpty();
 	}
 
+	/**
+	 * Adds an element to the queue
+	 */
 	@Override
 	public void enqueue(E e) {
 		list.addLast(e);
@@ -36,16 +39,25 @@ public class CircularQueue<E> implements Queue<E> {
 		return list.first();
 	}
 	
+	/**
+	 * Returns but does not remove the element at the front of the queue
+	 */
 	public E front()
 	{
 		return first();
 	}
 	
+	/**
+	 * Returns but does not remove the element at the back of the queue
+	 */
 	public E back()
 	{
 		return list.last();
 	}
 
+	/**
+	 * Removes an element from the queue and returns it.
+	 */
 	@Override
 	public E dequeue() {
 		return list.removeFirst();

@@ -61,6 +61,11 @@ public class CircularlyLinkedList<E> implements List<E> {
 		}
 	}
 
+	/**
+	 * Returns, but does not remove, the element stored at position i in the list.
+	 * 
+	 * @param i Position of element to return
+	 */
 	@Override
 	public E get(int i) {
 		if (tail == null || (i > size-1))
@@ -78,7 +83,14 @@ public class CircularlyLinkedList<E> implements List<E> {
 		
 		return curr.element;
 	}
+	
 
+	/**
+	 * Add an element at the given position in the list
+	 * 
+	 * @param i Position to add the specified element
+	 * @param e element to be added
+	 */
 	@Override
 	public void add(int i, E e) {
 		if (tail == null || i < (size-1))
@@ -102,6 +114,12 @@ public class CircularlyLinkedList<E> implements List<E> {
 		size++;
 	}
 
+	/**
+	 * Removes and returns the element at position i in the list.
+	 * 
+	 * @param i Position of element to be remove
+	 * @return Element removed
+	 */
 	@Override
 	public E remove(int i) {
 		if (tail == null)
@@ -139,6 +157,11 @@ public class CircularlyLinkedList<E> implements List<E> {
 		return e;
 	}
 
+	/**
+	 * Removes and returns the first element in the list
+	 * 
+	 * @return Element that was at the front of the list
+	 */
 	@Override
 	public E removeFirst() {
 		if (size == 0)
@@ -157,12 +180,18 @@ public class CircularlyLinkedList<E> implements List<E> {
 		else
 		{
 			E e = tail.getNext().getElement();
+			//skip pointer over first element
 			tail.setNext(tail.getNext().getNext());
 			size--;
 			return e;
 		}
 	}
 
+	/**
+	 * Removes and returns the last element in the list
+	 * 
+	 * @return Element that was last in the list
+	 */
 	@Override
 	public E removeLast() {
 		if (size == 0)
@@ -235,6 +264,11 @@ public class CircularlyLinkedList<E> implements List<E> {
 		return new ListIterator();	
 	}
 
+	/**
+	 * Adds and element to the start of the list
+	 * 
+	 * @param e Element to be added
+	 */
 	@Override
 	public void addFirst(E e) {
 		Node<E> newest = new Node<E>(e, null);
@@ -260,6 +294,11 @@ public class CircularlyLinkedList<E> implements List<E> {
 		size++;
 	}
 
+	/**
+	 * Adds element to the end of the list
+	 * 
+	 * @param e Element to be added
+	 */
 	@Override
 	public void addLast(E e) {
 		if (tail == null)
@@ -280,11 +319,21 @@ public class CircularlyLinkedList<E> implements List<E> {
 		size++;
 	}
 	
+	/**
+	 * Return first element of list
+	 * 
+	 * @return first element of list
+	 */
 	public E first()
 	{
 		return tail.getNext().getElement();
 	}
 	
+	/**
+	 * Returns last element of list
+	 * 
+	 * @return Last element of list
+	 */
 	public E last()
 	{
 		return tail.getElement();
