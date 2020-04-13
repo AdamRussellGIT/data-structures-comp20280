@@ -6,7 +6,7 @@ This is a repository that I maintained and updated throughout the semester for D
 
 ## *Required Classes*
 
-### Lists
+### *Lists*
 
 #### SinglyLinkedList
 
@@ -14,7 +14,7 @@ This is a repository that I maintained and updated throughout the semester for D
 
 #### CircularlyLinkedList
 
-## Queues
+### *Queues*
 
 #### ArrayQueue
 
@@ -22,31 +22,31 @@ This is a repository that I maintained and updated throughout the semester for D
 
 #### LinkedQueue
 
-### Stacks
+### *Stacks*
 
 #### ArrayStack
 
 #### LinkedStack
 
-### Deques
+### *Deques*
 
 #### LinkedDeque
 
-### Trees
+### *Trees*
 
 #### LinkedBianryTree
 
-### Prioirty Queue
+### *Prioirty Queues*
 
 #### HeapPriorityQueue
 
-### Hash Maps
+### *Hash Maps*
 
 #### UnsortedTableMap
 
 #### ChainHashMap
 
-### Binary Search Trees
+### *Binary Search Trees*
 
 #### TreeMap
 
@@ -56,7 +56,7 @@ This is a repository that I maintained and updated throughout the semester for D
 
 ## *Extra Classes*
 
-### Sorting
+### *Sorting*
 
 #### BubbleSort (Recursive)
 
@@ -66,7 +66,7 @@ This is a repository that I maintained and updated throughout the semester for D
 
 #### HeapPrioirtQueueSort
 
-### Miscellaneous
+### *Miscellaneous*
 
 #### BracketChecker
 
