@@ -8,48 +8,47 @@ This is a repository that I maintained and updated throughout the semester for D
 
 ### *Lists*
 
-#### SinglyLinkedList
-This class contains an implementation of a SinglyLinkedList, and contains a main method to test the functionality of the list.
+#### [SinglyLinkedList](src/projectCode20280/SinglyLinkedList.java)
 
-#### DoublyLinkedList
+#### [DoublyLinkedList](src/projectCode20280/DoublyLinkedList.java)
 
-#### CircularlyLinkedList
+#### [CircularlyLinkedList](src/projectCode20280/CircularlyLinkedList.java)
 
 ### *Queues*
 
-#### ArrayQueue
+#### [ArrayQueue](src/projectCode20280/ArrayQueue.java)
 
-#### CircularQueue
+#### [CircularQueue](src/projectCode20280/CircularQueue.java)
 
-#### LinkedQueue
+#### [LinkedQueue](src/projectCode20280/LinkedQueue.java)
 
 ### *Stacks*
 
-#### ArrayStack
+#### [ArrayStack](src/projectCode20280/ArrayStack.java)
 
-#### LinkedStack
+#### [LinkedStack](src/projectCode20280/LinkedStack.java)
 
 ### *Deques*
 
-#### LinkedDeque
+#### [LinkedDeque](src/projectCode20280/LinkedDeque.java)
 
 ### *Trees*
 
-#### LinkedBianryTree
+#### [LinkedBianryTree](src/projectCode20280/LinkedBinaryTree.java)
 
 ### *Prioirty Queues*
 
-#### HeapPriorityQueue
+#### [HeapPriorityQueue](src/projectCode20280/HeapPriorityQueue.java)
 
 ### *Hash Maps*
 
-#### UnsortedTableMap
+#### [UnsortedTableMap](src/projectCode20280/UnsortedTableMap.java)
 
-#### ChainHashMap
+#### [ChainHashMap](src/projectCode20280/ChainHashMap.java)
 
 ### *Binary Search Trees*
 
-#### TreeMap
+#### [TreeMap](src/projectCode20280/TreeMap.java)
 
 #### AVLTreeMap
 
@@ -59,21 +58,23 @@ This class contains an implementation of a SinglyLinkedList, and contains a main
 
 ### *Sorting*
 
-#### BubbleSort (Recursive)
+#### [BubbleSort (Recursive)](src/projectCode20280/BubbleSortRecursive.java)
 
-#### MergeSort (Recursive)
+#### [MergeSort (Recursive)](src/projectCode20280/MergeSortRecursion.java)
 
-#### SelectionSort (Recursive)
+#### [SelectionSort (Recursive)](src/projectCode20280/SelectionSortRecursion.java)
 
-#### HeapPrioirtQueueSort
+#### [PriorityQueueSort](src/projectCode20280/PQSort.java)
+
+#### [HeapPrioirtQueueSort](src/projectCode20280/HPQSort.java)
 
 ### *Miscellaneous*
 
-#### BracketChecker
+#### [BracketChecker](src/projectCode20280/BracketChecker.java)
 
-#### Collatz
+#### [Collatz](src/projectCode20280/Collatz.java)
 
-#### WordCountCHM
+#### [WordCountCHM](src/projectCode20280/WordCountCHM.java)
 
 # Versioning
 
