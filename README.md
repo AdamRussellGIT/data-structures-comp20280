@@ -1,6 +1,6 @@
 # *Data Structures Portfolio - Adam Russell*
 
-This is a repository that I maintained and updated throughout the semester for Data Structures COMP20280. It contains all data structures developed over the course of the moduel in practicals, along with some etc classes that I completed in my own time, which will be outlined below.
+This is a repository that I maintained and updated throughout the semester for Data Structures COMP20280. It contains all data structures developed over the course of the moduel in practicals, along with some etc classes that I completed in my own time, which can be visited by clicking on the class name.
 
 # Navigating The Repo
 
