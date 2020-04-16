@@ -11,10 +11,10 @@ import java.util.stream.Collectors;
  * An implementation of a sorted map using a binary search tree.
  */
 
-public class TreeMap<K extends Comparable<K>, V> extends AbstractSortedMap<K, V> {
+public class TreeMap<K, V> extends AbstractSortedMap<K, V> {
 
 	// We reuse the LinkedBinaryTree class. A limitation here is that we only use the key.
-	protected LinkedBinaryTree<Entry<K, V>> tree = new LinkedBinaryTree<Entry<K, V>>();
+	protected BalanceableBinaryTree<K, V> tree = new BalanceableBinaryTree<K, V>();
 
 	/** Constructs an empty map using the natural ordering of keys. */
 	public TreeMap() {
@@ -22,6 +22,11 @@ public class TreeMap<K extends Comparable<K>, V> extends AbstractSortedMap<K, V>
 		tree.addRoot(null); // create a sentinel leaf as root
 	}
 
+    public TreeMap(Comparator<K> comp) {
+        super(comp);              // the AbstractSortedMap constructor
+        tree.addRoot(null);       // create a sentinel leaf as root
+    }
+    
 	/**
 	 * Returns the number of entries in the map.
 	 * 
@@ -159,6 +164,8 @@ public class TreeMap<K extends Comparable<K>, V> extends AbstractSortedMap<K, V>
 		
 		Position<Entry<K, V>> p = treeSearch(root(), key);
 		
+		rebalanceAccess(p);
+		
 		if (isExternal(p))
 		{
 			return null;
@@ -183,10 +190,11 @@ public class TreeMap<K extends Comparable<K>, V> extends AbstractSortedMap<K, V>
 		
 		Entry<K, V> newEntry = new MapEntry<>(key, value);
 		Position<Entry<K, V>> p = treeSearch(root(), key);
-		
+	
 		if (isExternal(p))
 		{
 			expandExternal(p, newEntry);
+			rebalanceInsert(p);
 			return null;
 		}
 		
@@ -194,6 +202,7 @@ public class TreeMap<K extends Comparable<K>, V> extends AbstractSortedMap<K, V>
 		{
 			V old = p.getElement().getValue();
 			set(p, newEntry);
+			rebalanceInsert(p);
 			return old;
 		}
 	}
@@ -211,9 +220,9 @@ public class TreeMap<K extends Comparable<K>, V> extends AbstractSortedMap<K, V>
 		checkKey(key);
 		
 		Position<Entry<K, V>> p = treeSearch(root(), key);
-		
 		if (isExternal(p))
 		{
+			rebalanceAccess(p);
 			return null;
 		}
 		
@@ -229,9 +238,12 @@ public class TreeMap<K extends Comparable<K>, V> extends AbstractSortedMap<K, V>
 			}
 			
 			Position<Entry<K, V>> leaf = (isExternal(left(p)) ? left(p) : right(p));
+			Position<Entry<K, V>> sibling = sibling(leaf);
 			
 			remove(leaf);
 			remove(p);
+			
+			rebalanceDelete(sibling);
 			
 			return old;
 		}
@@ -509,6 +521,13 @@ public class TreeMap<K extends Comparable<K>, V> extends AbstractSortedMap<K, V>
 		System.out.println(treeMap.entrySet());
 		System.out.println(btp.print());
 		
+		Integer hi = rands.get(1);
+		System.out.println("Removing: " + hi);
+		treeMap.remove(hi);
+		
+		System.out.println(treeMap.entrySet());
+		System.out.println(btp.print());
+		
 		Integer i = rands.get(3);
 		System.out.println(i + "floorEntry = " + treeMap.floorEntry(i));
 		
@@ -517,4 +536,17 @@ public class TreeMap<K extends Comparable<K>, V> extends AbstractSortedMap<K, V>
 		System.out.println("After random removal:  " + treeMap.entrySet());
 		System.out.println("After random removal: \n" + btp.print());*/
 	}
+
+
+	/** Overrides the TreeMap rebalancing hook that is called after an insertion. */
+	protected void rebalanceInsert(Position<Entry<K, V>> p) {}
+
+	/** Overrides the TreeMap rebalancing hook that is called after a deletion. */
+	protected void rebalanceDelete(Position<Entry<K, V>> p) {}
+
+	/** Overrides the TreeMap rebalancing hook that is called after a node access. */
+	protected void rebalanceAccess(Position<Entry<K, V>> p) {}
+	
+    protected void rotate(Position<Entry<K, V>> p) {}
+    
 }

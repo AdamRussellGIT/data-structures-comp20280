@@ -30,12 +30,12 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 	  
 	  private Node<E> right;
 	  
-	  public Node(E e, Node<E> parent, Node<E> left, Node<E> right)
+	  public Node(E e, Node<E> above, Node<E> leftChild, Node<E> rightChild)
 	  {
 		  this.element = e;
-		  this.parent = parent;
-		  this.left = left;
-		  this.right = right;
+		  this.parent = above;
+		  this.left = leftChild;
+		  this.right = rightChild;
 	  }
 	  
 	  public void setElement(E e)
@@ -58,7 +58,7 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 		  right = r;
 	  }
 	  
-	  public E getElement()
+	  public E getElement() throws IllegalStateException
 	  {
 		  return this.element;
 	  }
@@ -84,7 +84,8 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 		  sb.append(element);
 		  return sb.toString();
 	  }
-  } 
+	  
+	} 
 
   /** Factory function to create a new node storing element e. */
   protected Node<E> createNode(E e, Node<E> parent,
