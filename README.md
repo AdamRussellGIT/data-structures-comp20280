@@ -50,9 +50,11 @@ This is a repository that I maintained and updated throughout the semester for D
 
 #### [TreeMap](src/projectCode20280/TreeMap.java)
 
-#### AVLTreeMap
+#### [AVLTreeMap](src/src/projectCode20280/AVLTreeMap.java)
 
-#### SplayTreeMap
+#### [SplayTreeMap](src/projectCode20280/SplayTreeMap.java)
+
+#### [BalanceableBinaryTree](src/projectCode20280/BalanceableBinaryTree.java)
 
 ## *Extra Classes*
 
