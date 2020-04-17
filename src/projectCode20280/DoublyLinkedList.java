@@ -283,12 +283,12 @@ public class DoublyLinkedList<E> implements List<E> {
         return retStr;
     }
 	
-	public E getFirst()
+	public E first()
 	{
 		return header.getNext().getElement();
 	}
 	
-	public E getLast()
+	public E last()
 	{
 		return trailer.getPrev().getElement();
 	}
@@ -305,7 +305,7 @@ public class DoublyLinkedList<E> implements List<E> {
            ll.removeFirst();
            System.out.println(ll);
            
-           System.out.println(ll.getLast());
+           System.out.println(ll.last());
 
            ll.removeLast();
            System.out.println(ll);

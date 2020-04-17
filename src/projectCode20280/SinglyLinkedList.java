@@ -280,6 +280,16 @@ public class SinglyLinkedList<E> implements List<E> {
 		size++;
 	}
 	
+	public E first()
+	{
+		return head.getElement();
+	}
+	
+	public E last()
+	{
+		return get(size()-1);
+	}
+	
 	/**
 	 * Reverses the order of elements in the list.
 	 */
