@@ -406,6 +406,24 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 	
 	return temp;
   }
+
+  public void createLevelOrder(E[] arr)
+  {
+  	root = createLevelOrderHelper(arr, root, 0);
+  }
+
+  private Node<E> createLevelOrderHelper(E[] arr, Node<E> p, int i)
+  {
+  	if (i < arr.length) {
+		Node<E> n = createNode(arr[i], p, null, null);
+		n.left = createLevelOrderHelper(arr, n.left, 2 * i + 1);
+		n.right = createLevelOrderHelper(arr, n.right, 2 * i + 2);
+		size++;
+		return n;
+	}
+
+  	return p;
+  }
   
   public String toString() {
 	  StringBuilder sb = new StringBuilder();
@@ -414,6 +432,8 @@ public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTre
 		  sb.append(p.getElement());
 		  sb.append(", ");
 	  }
+
+	  sb.replace(sb.length()-2, sb.length(), "");
 	  sb.append("]");
 	  return sb.toString();
   }

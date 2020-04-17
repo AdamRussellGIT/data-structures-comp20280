@@ -1,6 +1,10 @@
 package projectCode20280;
 
+import org.junit.platform.commons.util.BlacklistedExceptions;
+
 import java.util.Comparator;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * An implementation of a sorted map using an AVL tree.
@@ -15,10 +19,8 @@ import java.util.Comparator;
 
 public class AVLTreeMap<K, V> extends TreeMap<K, V> {
 
+	protected BalanceableBinaryTree<K, V> bbt = new BalanceableBinaryTree<>();
 
-    protected BalanceableBinaryTree<K, V> tree = new BalanceableBinaryTree<>();
-
-    
 	/** Constructs an empty map using the natural ordering of keys. */
 	public AVLTreeMap() {
 		super();
@@ -42,7 +44,7 @@ public class AVLTreeMap<K, V> extends TreeMap<K, V> {
 	 * Recomputes the height of the given position based on its children's heights.
 	 */
 	protected void recomputeHeight(Position<Entry<K, V>> p) {
-		tree.setAux(p,  1 + Math.max(height(left(p)),height(right(p))));
+		tree.setAux(p, 1 + Math.max(height(left(p)), height(right(p))));
 
 	}
 
@@ -146,10 +148,18 @@ public class AVLTreeMap<K, V> extends TreeMap<K, V> {
 	*/
 	
 	public static void main(String [] args) {
-		AVLTreeMap<Integer, Integer> avl = new AVLTreeMap<>();
+		AVLTreeMap<Integer, String> map = new AVLTreeMap<>();
+		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+
+		for(Integer i : arr) {
+			map.put(i, Integer.toString(i));
+		}
+
+		System.out.println("15" + " and got " + map.get(15));
+		/*AVLTreeMap<Integer, String> avl = new AVLTreeMap<>();
 		Integer[] arr = new Integer[] { 44, 17, 88, 8, 32, 65, 97, 28, 54, 82, 93, 21, 29, 76, 80 };
 		for (Integer i : arr) {
-			avl.put(i, i);
+			avl.put(i, Integer.toString(i));
 		}
 
 		System.out.println("Original avl: " + avl);
@@ -157,16 +167,18 @@ public class AVLTreeMap<K, V> extends TreeMap<K, V> {
 		avl.remove(arr[0]);
 
 		System.out.println("Remove 44 from avl: " + avl);
+
+		System.out.println(avl.get(88)+100);
 		
 		avl.remove(arr[4]);
 
 		System.out.println("Remove 32 from avl: " + avl);
 		
-		avl.put(100, 100);
+		avl.put(100, Integer.toString(100));
 
 		System.out.println("Add 100 to avl: " + avl);
 		
-		System.out.println("Sanity check is " + avl.sanityCheck());
+		System.out.println("Sanity check is " + avl.sanityCheck());*/
 	}
 }
 

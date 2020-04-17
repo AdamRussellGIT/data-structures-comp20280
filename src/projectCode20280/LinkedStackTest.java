@@ -31,7 +31,7 @@ class LinkedStackTest {
 		for(int i = 0; i < 10; ++i)
 			s.push(i);
 		assertEquals(10, s.size());
-		assertEquals("[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]", s.toString());
+		assertEquals("[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]", s.toString());
 	}
 
 	@Test
@@ -56,6 +56,6 @@ class LinkedStackTest {
 		LinkedStack<Integer> s = new LinkedStack<>();
 		for(int i = 0; i < 10; ++i)
 			s.push(i);
-		assertEquals("[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]", s.toString());
+		assertEquals("[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]", s.toString());
 	}
 }

@@ -204,10 +204,21 @@ public class SinglyLinkedList<E> implements List<E> {
 	 */
 	@Override
 	public E removeFirst() {
-		E temp = head.element;
-		head = head.next;
-		size--;
-		return temp;
+		if (size() == 1)
+		{
+			E e = head.getElement();
+			head= null;
+			size--;
+			return e;
+		}
+
+		else
+		{
+			E temp = head.getElement();
+			head = head.getNext();
+			size--;
+			return temp;
+		}
 	}
 
 	/**
@@ -282,11 +293,21 @@ public class SinglyLinkedList<E> implements List<E> {
 	
 	public E first()
 	{
+		if (isEmpty())
+		{
+			return null;
+		}
+
 		return head.getElement();
 	}
 	
 	public E last()
 	{
+		if (isEmpty())
+		{
+			return null;
+		}
+
 		return get(size()-1);
 	}
 	
@@ -333,16 +354,22 @@ public class SinglyLinkedList<E> implements List<E> {
 	
 	
 	public String toString(){
-        String retStr = "Contents:\n";
+		StringBuilder sb = new StringBuilder();
+		sb.append("[");
 
-        Node<E> current = head;
-        while(current != null){
-            retStr += current.element + " ";
-            current = current.getNext();
+		Node<E> walk = head;
 
-        }
+		while (walk != null)
+		{
+			sb.append(walk.getElement());
+			sb.append(", ");
+			walk = walk.getNext();
+		}
 
-        return retStr;
+		sb.replace(sb.length()-2, sb.length(), "");
+		sb.append("]");
+
+		return sb.toString();
     }
 	
 	public static void main(String[] args) {

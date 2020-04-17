@@ -73,43 +73,36 @@ public class BalanceableBinaryTree<K, V> extends LinkedBinaryTree<Entry<K, V>> {
 	 * Caller should ensure that p is not the root.
 	 */
 	public void rotate(Position<Entry<K, V>> p) {
-		//only perform operation if p is not the root
-		if (p != root)
+		Node<Entry<K, V>> x = validate(p);
+		Node<Entry<K, V>> y = x.getParent();
+		Node<Entry<K, V>> z = y.getParent();
+
+		//if there is no grandparent, x will become the root
+		if (z == null)
 		{
-			Node<Entry<K, V>> x = validate(p);
-			Node<Entry<K, V>> y = x.getParent();
-			Node<Entry<K, V>> z = y.getParent();
-		
-			//if there is no grandparent, x will become the root
-			if (z == null)
-			{
-				root = x;
-				x.setParent(null);
-			}
-		
-			//x becomes a child of it's grandparent
-			else
-			{
-				boolean isLeft = (y == z.getLeft());
-				relink(z, x, isLeft);
-			}
-		
+			root = x;
+			x.setParent(null);
+		}
+
+		//x becomes a child of it's grandparent
+		else {
+			relink(z, x, (y == z.getLeft()));
+		}
+
+		//p's right child become's its old parents left
+		if (x == y.getLeft())
+		{
 			//p's right child become's its old parents left
-			if (x == y.getLeft())
-			{
-				//p's right child become's its old parents left
-				relink(y, x.getRight(), true);
-				//p's old parent become p's left child
-				relink(x, y, false);
-			}
-	
-			else
-			{
-				//p's left child becomes p's old parents right child
-				relink(y, x.getLeft(), false);
-				//p's old parent becomes a child child of p
-				relink(x, y, true);
-			}
+			relink(y, x.getRight(), true);
+			//p's old parent become p's left child
+			relink(x, y, false);
+		}
+
+		else {
+			//p's left child becomes p's old parents right child
+			relink(y, x.getLeft(), false);
+			//p's old parent becomes a child child of p
+			relink(x, y, true);
 		}
 	}
 

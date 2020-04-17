@@ -15,9 +15,6 @@ import java.util.Comparator;
 
 public class SplayTreeMap<K, V> extends TreeMap<K,V> {
 
-    protected BalanceableBinaryTree<K, V> tree = new BalanceableBinaryTree<>();
-
-    
 	  /** Constructs an empty map using the natural ordering of keys. */
 	  public SplayTreeMap() { super(); }
 
@@ -37,23 +34,23 @@ public class SplayTreeMap<K, V> extends TreeMap<K,V> {
 			  //zig case
 			  if (grandparent == null)
 			  {
-				  rotate(p);
+				  tree.rotate(p);
 			  }
 			  
 			  //zig-zig case
 			  else if ((parent == left(grandparent)) == (p == left(parent)))
 			  {
-				  //shit the parent up, and the shift p up
-				  rotate(parent);
-				  rotate(p);
+				  //shift the parent up, and the shift p up
+				  tree.rotate(parent);
+				  tree.rotate(p);
 			  }
 			  
 			  //zig-zag case
 			  else
 			  {
 				  //move p up twice
-				  rotate(p);
-				  rotate(p);
+				  tree.rotate(p);
+				  tree.rotate(p);
 			  }
 		  }
 	  }
@@ -75,7 +72,7 @@ public class SplayTreeMap<K, V> extends TreeMap<K,V> {
 	  /** Overrides the TreeMap rebalancing hook that is called after an insertion. */
 	  @Override
 	  protected void rebalanceInsert(Position<Entry<K,V>> p) {
-		  splay(p);
+	  	splay(p);
 	  }
 
 	  /** Overrides the TreeMap rebalancing hook that is called after a deletion. */

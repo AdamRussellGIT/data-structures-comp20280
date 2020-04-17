@@ -70,9 +70,10 @@ public class DoublyLinkedList<E> implements List<E> {
 	 * @param successor Node after
 	 */
 	private void addBetween(E e, Node<E> predecessor, Node<E> successor) {
-		Node<E> newest = new Node<E>(e, predecessor, successor);
+		Node<E> newest = new Node<>(e, predecessor, successor);
 		predecessor.setNext(newest);
 		successor.setPrev(newest);
+		size++;
 	}
 	
 	@Override
@@ -101,22 +102,20 @@ public class DoublyLinkedList<E> implements List<E> {
 	@Override
 	public E get(int i) {
 		//check if its possible to get i
-		if(header.getNext() == null || i > size)
+		if(isEmpty() || i > size()-1)
 		{
 			throw new RuntimeException("cannot get");
 		}
 		
 		//depending on where i is, choose fastest path
-		if(i < (size/2))
+		if(i < (size()-1/2))
 		{
 			Node<E> curr = header.getNext();
-			Node<E> prev = null;
 			
 			//find correct position
 			for(int k=0;k<i;k++)
 			{
-				prev = curr;
-				curr = curr.next;
+				curr = curr.getNext();
 			}
 			
 			return curr.element;
@@ -125,12 +124,10 @@ public class DoublyLinkedList<E> implements List<E> {
 		else
 		{
 			Node<E> curr = trailer.getPrev();
-			Node<E> prev = null;
 			
-			for(int k=0;k>i;k--)
+			for(int k=size()-1;k>i;k--)
 			{
-				prev = curr;
-				curr = curr.prev;
+				curr = curr.getPrev();
 			}
 			
 			return curr.element;
@@ -145,12 +142,12 @@ public class DoublyLinkedList<E> implements List<E> {
 	 */
 	@Override
 	public void add(int i, E e) {
-		if(i > size-1)
+		if(i > size()-1)
 		{
 			throw new RuntimeException("cannot add");
 		}
 		
-		Node<E> curr = header;
+		Node<E> curr = header.getNext();
 		Node<E> prev = null;
 		
 		//find correct position
@@ -161,9 +158,7 @@ public class DoublyLinkedList<E> implements List<E> {
 		}
 		
 		//add in node
-		Node<E> newest = new Node<E>(e, curr.next, prev);
-		prev.next = newest;
-		newest.next = curr;
+		addBetween(e, prev, curr);
 	}
 
 	/**
@@ -174,29 +169,22 @@ public class DoublyLinkedList<E> implements List<E> {
 	 */
 	@Override
 	public E remove(int i) {
-		if (header == null)
+		if (isEmpty() || i > size()-1)
 		{
 			throw new RuntimeException("cannot delete");
 		}
 		
 		Node<E> curr = header.getNext();
 		Node<E> prev = header;
-		int k = 1;
 		
 		//find the correct node to remove
-		while (curr != null && k != i)
+		for (int k = 0; k < i; k++)
 		{
 			prev = curr;
-			curr = curr.next;
-			k++;
+			curr = curr.getNext();
 		}
 		
-		if (curr == null)
-		{
-			throw new RuntimeException("cannot delete");
-		}
-		
-		E e = prev.element;
+		E e = curr.element;
 		prev.next = curr.next;
 		size--;
 		return e;
@@ -211,7 +199,7 @@ public class DoublyLinkedList<E> implements List<E> {
 		
 		else
 		{
-			return remove(1);
+			return remove(0);
 		}
 	}
 
@@ -224,7 +212,7 @@ public class DoublyLinkedList<E> implements List<E> {
 		
 		else
 		{
-			return remove(size);
+			return remove(size()-1);
 		}
 	}
 	
@@ -232,13 +220,11 @@ public class DoublyLinkedList<E> implements List<E> {
 	@Override
 	public void addFirst(E e) {
 		addBetween(e, header, header.getNext());
-		size++;
 	}
 
 	@Override
 	public void addLast(E e) {
 		addBetween(e, trailer.getPrev(), trailer);
-		size++;
 	}
 	
 	private class ListIterator implements Iterator<E>
@@ -271,16 +257,22 @@ public class DoublyLinkedList<E> implements List<E> {
 	}
 	
 	public String toString(){
-        String retStr = "Contents:\n";
+		StringBuilder sb = new StringBuilder();
+		sb.append("[");
 
-        Node<E> current = header.getNext();
-        while(current.getNext() != null){
-            retStr += current.element + " ";
-            current = current.getNext();
+		Node<E> walk = header.getNext();
 
-        }
+		while (walk.getNext() != null)
+		{
+			sb.append(walk.getElement());
+			sb.append(", ");
+			walk = walk.getNext();
+		}
 
-        return retStr;
+		sb.replace(sb.length()-2, sb.length(), "");
+		sb.append("]");
+
+		return sb.toString();
     }
 	
 	public E first()

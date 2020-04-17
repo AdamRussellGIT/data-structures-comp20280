@@ -26,12 +26,12 @@ public class LinkedDeque<E> implements Deque<E> {
 
 	@Override
 	public E first() {
-		return list.getFirst();
+		return list.first();
 	}
 
 	@Override
 	public E last() {
-		return list.getLast();
+		return list.last();
 	}
 
 	@Override

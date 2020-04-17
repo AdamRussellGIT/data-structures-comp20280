@@ -98,9 +98,9 @@ public class TreeMap<K, V> extends AbstractSortedMap<K, V> {
 		{
 			return p;
 		}
-		
+
 		int comp = compare(key, p.getElement());
-		
+
 		if (comp == 0)
 		{
 			return p;
@@ -161,7 +161,7 @@ public class TreeMap<K, V> extends AbstractSortedMap<K, V> {
 	@Override
 	public V get(K key) throws IllegalArgumentException {
 		checkKey(key);
-		
+
 		Position<Entry<K, V>> p = treeSearch(root(), key);
 		
 		rebalanceAccess(p);
@@ -202,7 +202,7 @@ public class TreeMap<K, V> extends AbstractSortedMap<K, V> {
 		{
 			V old = p.getElement().getValue();
 			set(p, newEntry);
-			rebalanceInsert(p);
+			rebalanceAccess(p);
 			return old;
 		}
 	}
@@ -291,14 +291,14 @@ public class TreeMap<K, V> extends AbstractSortedMap<K, V> {
 		
 		Position<Entry<K, V>> p = treeSearch(root(), key);
 		
-		if (isExternal(p))
+		if (isInternal(p))
 		{
 			return p.getElement();
 		}
 		
 		while (!isRoot(p))
 		{
-			if (p == right(parent(p)))
+			if (p == left(parent(p)))
 			{
 				return parent(p).getElement();
 			}
@@ -326,7 +326,7 @@ public class TreeMap<K, V> extends AbstractSortedMap<K, V> {
 		
 		Position<Entry<K, V>> p = treeSearch(root(), key);
 		
-		if (isExternal(p))
+		if (isInternal(p))
 		{
 			return p.getElement();
 		}
@@ -485,7 +485,16 @@ public class TreeMap<K, V> extends AbstractSortedMap<K, V> {
 	
 	public String toString()
 	{
-		return tree.toString();
+		StringBuilder sb = new StringBuilder();
+		sb.append("[");
+		for (Entry<K, V> entry : tree)
+		{
+			sb.append(entry);
+			sb.append(", ");
+		}
+		sb.replace(sb.length()-2, sb.length(), "");
+		sb.append("]");
+		return sb.toString();
 	}
 
 	// remainder of class is for debug purposes only

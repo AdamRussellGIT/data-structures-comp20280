@@ -84,9 +84,7 @@ public class UnsortedTableMap<K, V> extends AbstractMap<K, V> {
 			return null;
 		}
 		
-		V temp = table.get(i).getValue();
-		table.get(i).setValue(value);
-		return temp;		
+		return table.get(i).setValue(value);
 	}
 
 	/**
@@ -100,7 +98,8 @@ public class UnsortedTableMap<K, V> extends AbstractMap<K, V> {
 	@Override
 	public V remove(K key) {
 		int i = findIndex(key);
-		
+
+		int n = size();
 		if (i == -1)
 		{
 			return null;
@@ -109,12 +108,12 @@ public class UnsortedTableMap<K, V> extends AbstractMap<K, V> {
 		V temp = table.get(i).getValue();
 		
 		//reorder so to not leave any gaps
-		if (i != (table.size() - 1))
+		if (i != (n - 1))
 		{
-			table.set(i, table.get(table.size()-1));
+			table.set(i, table.get(n-1));
 		}
 		
-		table.remove(table.size()-1);
+		table.remove(n-1);
 		
 		return temp;
 	}

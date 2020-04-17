@@ -212,7 +212,20 @@ public class HeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
   
   public String toString()
   {
-	  return Arrays.toString(heap.toArray());
+  	StringBuilder sb = new StringBuilder();
+  	sb.append("[");
+
+  	for (Entry<K, V> entry : heap)
+  	{
+		sb.append(entry);
+		sb.replace(sb.length()-1, sb.length(), "");
+		sb.append(", ");
+  	}
+
+  	sb.replace(sb.length()-2, sb.length(), "");
+  	sb.append("]");
+
+  	return sb.toString();
   }
   
   public static void main(String[] args)
