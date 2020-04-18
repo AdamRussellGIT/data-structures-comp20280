@@ -10,7 +10,11 @@ This is a repository that I maintained and updated throughout the semester for D
 
 #### [SinglyLinkedList](src/projectCode20280/SinglyLinkedList.java)
 
+###### [SinglyLinkedListTest](src/projectCode20280/SinglyLinkedListTest.java)
+
 #### [DoublyLinkedList](src/projectCode20280/DoublyLinkedList.java)
+
+###### [DoublyLinkedListTest](src/projectCode20280/DoublyLinkedListTest.java)
 
 #### [CircularlyLinkedList](src/projectCode20280/CircularlyLinkedList.java)
 
@@ -22,11 +26,15 @@ This is a repository that I maintained and updated throughout the semester for D
 
 #### [LinkedQueue](src/projectCode20280/LinkedQueue.java)
 
+###### [LinkedQueueTest](src/projectCode20280/LinkedQueueTest.java)
+
 ### *Stacks*
 
 #### [ArrayStack](src/projectCode20280/ArrayStack.java)
 
 #### [LinkedStack](src/projectCode20280/LinkedStack.java)
+
+###### [LinkedStackTest.java](src/projectCode20280/LinkedStackTest.java)
 
 ### *Deques*
 
@@ -36,9 +44,13 @@ This is a repository that I maintained and updated throughout the semester for D
 
 #### [LinkedBianryTree](src/projectCode20280/LinkedBinaryTree.java)
 
+###### [LinkedBinaryTreeTest](src/projectCode20280/LinkedBinaryTreeTest.java)
+
 ### *Prioirty Queues*
 
 #### [HeapPriorityQueue](src/projectCode20280/HeapPriorityQueue.java)
+
+###### [HeapPriorityQueueTest](src/projectCode20280/HeapPriorityQueueTest.java)
 
 ### *Hash Maps*
 
@@ -46,13 +58,21 @@ This is a repository that I maintained and updated throughout the semester for D
 
 #### [ChainHashMap](src/projectCode20280/ChainHashMap.java)
 
+###### [ChainHashMapTest](src/projectCode20280/ChainHashMapTest.java)
+
 ### *Binary Search Trees*
 
 #### [TreeMap](src/projectCode20280/TreeMap.java)
 
+###### [TreeMap](src/projectCode20280/TreeMapTest.java)
+
 #### [AVLTreeMap](src/src/projectCode20280/AVLTreeMap.java)
 
+###### [AVLTreeMapTest](src/projectCode20280/AVLTreeMapTest.java)
+
 #### [SplayTreeMap](src/projectCode20280/SplayTreeMap.java)
+
+###### [SplayTreeMapTest](src/projectCode20280/SplayTreeMapTest.java)
 
 #### [BalanceableBinaryTree](src/projectCode20280/BalanceableBinaryTree.java)
 
