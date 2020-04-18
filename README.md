@@ -10,13 +10,13 @@ This is a repository that I maintained and updated throughout the semester for D
 
 #### [SinglyLinkedList](src/projectCode20280/SinglyLinkedList.java)
 
-###### [SinglyLinkedListTest](src/projectCode20280/SinglyLinkedListTest.java)
-
 #### [DoublyLinkedList](src/projectCode20280/DoublyLinkedList.java)
 
-###### [DoublyLinkedListTest](src/projectCode20280/DoublyLinkedListTest.java)
-
 #### [CircularlyLinkedList](src/projectCode20280/CircularlyLinkedList.java)
+
+###### [SinglyLinkedListTest](src/projectCode20280/SinglyLinkedListTest.java)
+
+###### [DoublyLinkedListTest](src/projectCode20280/DoublyLinkedListTest.java)
 
 ### *Queues*
 
@@ -64,17 +64,17 @@ This is a repository that I maintained and updated throughout the semester for D
 
 #### [TreeMap](src/projectCode20280/TreeMap.java)
 
-###### [TreeMap](src/projectCode20280/TreeMapTest.java)
-
 #### [AVLTreeMap](src/src/projectCode20280/AVLTreeMap.java)
-
-###### [AVLTreeMapTest](src/projectCode20280/AVLTreeMapTest.java)
 
 #### [SplayTreeMap](src/projectCode20280/SplayTreeMap.java)
 
-###### [SplayTreeMapTest](src/projectCode20280/SplayTreeMapTest.java)
-
 #### [BalanceableBinaryTree](src/projectCode20280/BalanceableBinaryTree.java)
+
+###### [TreeMapTest](src/projectCode20280/TreeMapTest.java)
+
+###### [AVLTreeMapTest](src/projectCode20280/AVLTreeMapTest.java)
+
+###### [SplayTreeMapTest](src/projectCode20280/SplayTreeMapTest.java)
 
 ## *Extra Classes*
 
