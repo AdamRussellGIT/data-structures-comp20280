@@ -146,6 +146,11 @@ public class AVLTreeMap<K, V> extends TreeMap<K, V> {
 		return btp.print();	
 	}
 	*/
+
+	public String toString()
+	{
+		return super.toString();
+	}
 	
 	public static void main(String [] args) {
 		AVLTreeMap<Integer, String> map = new AVLTreeMap<>();
@@ -154,6 +159,8 @@ public class AVLTreeMap<K, V> extends TreeMap<K, V> {
 		for(Integer i : arr) {
 			map.put(i, Integer.toString(i));
 		}
+
+		System.out.println(map.toString());
 
 		System.out.println("15" + " and got " + map.get(15));
 		/*AVLTreeMap<Integer, String> avl = new AVLTreeMap<>();

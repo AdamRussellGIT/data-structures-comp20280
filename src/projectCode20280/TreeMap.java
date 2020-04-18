@@ -487,7 +487,7 @@ public class TreeMap<K, V> extends AbstractSortedMap<K, V> {
 	{
 		StringBuilder sb = new StringBuilder();
 		sb.append("[");
-		for (Entry<K, V> entry : tree)
+		for (Entry<K, V> entry : entrySet())
 		{
 			sb.append(entry);
 			sb.append(", ");
@@ -528,6 +528,7 @@ public class TreeMap<K, V> extends AbstractSortedMap<K, V> {
 		}
 		
 		System.out.println(treeMap.entrySet());
+		System.out.println(treeMap.toString());
 		System.out.println(btp.print());
 		
 		Integer hi = rands.get(1);
