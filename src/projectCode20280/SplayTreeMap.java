@@ -83,5 +83,10 @@ public class SplayTreeMap<K, V> extends TreeMap<K,V> {
 			  splay(parent(p));
 		  }
 	  }
+
+	  public String toString()
+	  {
+	  	return super.toString();
+	  }
 	  
 }
