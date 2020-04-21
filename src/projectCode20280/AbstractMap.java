@@ -96,6 +96,22 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
 		public Iterator<K> iterator() {
 			return new KeyIterator();
 		}
+
+		public String toString()
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.append("[");
+
+			for (Entry<K, V> entry : entrySet())
+			{
+				sb.append(entry.getKey() + ", ");
+			}
+
+			sb.replace(sb.length()-2, sb.length(), "");
+			sb.append("]");
+
+			return sb.toString();
+		}
 	} // ----------- end of nested KeyIterable class -----------
 
 	/**

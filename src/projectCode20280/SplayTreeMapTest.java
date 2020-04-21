@@ -28,7 +28,7 @@ class SplayTreeMapTest {
 			map.put(i, Integer.toString(i));
 		}
 		
-		assertEquals("[<1, 1>, <2, 2>, <4, 4>, <5, 5>, <12, 12>, <15, 15>, <21, 21>, <23, 23>, <24, 24>, <26, 26>, <33, 33>, <35, 35>]", map.toString());
+		assertEquals("[1, 2, 4, 5, 12, 15, 21, 23, 24, 26, 33, 35]", map.keySet().toString());
 	}
 
 	@Test
@@ -135,7 +135,7 @@ class SplayTreeMapTest {
 		for(Integer i : arr) {
 			map.put(i, Integer.toString(i));
 		}
-		assertEquals("[<1, 1>, <2, 2>, <4, 4>, <5, 5>, <12, 12>, <15, 15>, <21, 21>, <23, 23>, <24, 24>, <26, 26>, <33, 33>, <35, 35>]", map.toString());
+		assertEquals("[<1, 1>, <2, 2>, <4, 4>, <5, 5>, <12, 12>, <15, 15>, <21, 21>, <23, 23>, <24, 24>, <26, 26>, <33, 33>, <35, 35>]", map.entrySet().toString());
 	}
 
 	@Test
