@@ -18,6 +18,8 @@ This is a repository that I maintained and updated throughout the semester for D
 
 ###### [DoublyLinkedListTest](src/projectCode20280/DoublyLinkedListTest.java)
 
+###### [CircularlyLinkedListTest](src/projectCode20280/CircularlyLinkedListTest.java)
+
 ### *Queues*
 
 #### [ArrayQueue](src/projectCode20280/ArrayQueue.java)
@@ -25,6 +27,10 @@ This is a repository that I maintained and updated throughout the semester for D
 #### [CircularQueue](src/projectCode20280/CircularQueue.java)
 
 #### [LinkedQueue](src/projectCode20280/LinkedQueue.java)
+
+###### [ArrayQueueTest](src/projectCode20280/ArrayQueueTest.java)
+
+###### [CircularQueueTest](src/projectCode20280/CircularQueueTest.java)
 
 ###### [LinkedQueueTest](src/projectCode20280/LinkedQueueTest.java)
 
@@ -34,11 +40,15 @@ This is a repository that I maintained and updated throughout the semester for D
 
 #### [LinkedStack](src/projectCode20280/LinkedStack.java)
 
+###### [ArrayStackTest](src/projectCode20280/ArrayStackTest.java)
+
 ###### [LinkedStackTest.java](src/projectCode20280/LinkedStackTest.java)
 
 ### *Deques*
 
 #### [LinkedDeque](src/projectCode20280/LinkedDeque.java)
+
+###### [LinkedDeque](src/projectCode20280/LinkedDeque.java)
 
 ### *Trees*
 
@@ -57,6 +67,8 @@ This is a repository that I maintained and updated throughout the semester for D
 #### [UnsortedTableMap](src/projectCode20280/UnsortedTableMap.java)
 
 #### [ChainHashMap](src/projectCode20280/ChainHashMap.java)
+
+###### [UnsortedTableMapTest](src/projectCode20280/UnsortedTableMapTest.java)
 
 ###### [ChainHashMapTest](src/projectCode20280/ChainHashMapTest.java)
 
