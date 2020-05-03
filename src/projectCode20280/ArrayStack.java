@@ -81,22 +81,18 @@ public class ArrayStack<E> implements Stack<E> {
 	
 	public String toString()
 	{
-		String s = "";
-		
+		StringBuilder sb = new StringBuilder();
+		sb.append("[");
+
 		for (int i = 0; i <= t; i++)
 		{
-			if (i == t)
-			{
-				s += data[i];
-			}
-			
-			else
-			{
-				s += (data[i] + ", ");
-			}
+			sb.append(data[i] + ", ");
 		}
-		
-		return s;
+
+		sb.replace(sb.length()-2, sb.length(), "");
+		sb.append("]");
+
+		return sb.toString();
 	}
 	
 	public static void main(String[] args) {

@@ -140,12 +140,12 @@ public class AVLTreeMap<K, V> extends TreeMap<K, V> {
 		return true;
 	}
 
-	/*
+
 	public String toBinaryTreeString() {
 		BinaryTreePrinter< Entry<K, V> > btp = new BinaryTreePrinter<>( (BalanceableBinaryTree<K, V>) this.tree);		
 		return btp.print();	
 	}
-	*/
+
 
 	public String toString()
 	{
@@ -154,15 +154,17 @@ public class AVLTreeMap<K, V> extends TreeMap<K, V> {
 	
 	public static void main(String [] args) {
 		AVLTreeMap<Integer, String> map = new AVLTreeMap<>();
-		Integer[] arr = new Integer[] {35,26,15,24,33,4,12,1,23,21,2,5};
+		Integer[] arr = new Integer[] {5,3,10,2,4,7,11,1,6,9,12,8};
 
 		for(Integer i : arr) {
 			map.put(i, Integer.toString(i));
 		}
 
-		System.out.println(map.toString());
-
-		System.out.println("15" + " and got " + map.get(15));
+		System.out.println(map.toBinaryTreeString());
+		System.out.println(map.height(map.root()));
+		map.remove(5);
+		System.out.println(map.toBinaryTreeString());
+		System.out.println(map.height(map.root()));
 		/*AVLTreeMap<Integer, String> avl = new AVLTreeMap<>();
 		Integer[] arr = new Integer[] { 44, 17, 88, 8, 32, 65, 97, 28, 54, 82, 93, 21, 29, 76, 80 };
 		for (Integer i : arr) {

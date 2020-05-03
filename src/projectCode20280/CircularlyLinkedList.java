@@ -73,7 +73,7 @@ public class CircularlyLinkedList<E> implements List<E> {
 			throw new RuntimeException("cannot get");
 		}
 		
-		Node<E> curr = tail;
+		Node<E> curr = tail.getNext();
 		
 		//start at tail, walk 'i' steps
 		for (int k = 0; k < i; k++)
@@ -93,13 +93,13 @@ public class CircularlyLinkedList<E> implements List<E> {
 	 */
 	@Override
 	public void add(int i, E e) {
-		if (tail == null || i < (size-1))
+		if (tail == null || i > (size-1))
 		{
 			throw new RuntimeException("cannot add");
 		}
 		
 		//used to walk 'i' steps
-		Node<E> curr = tail;
+		Node<E> curr = tail.getNext();
 		Node<E> prev = null;
 		
 		for (int k = 0; k < i; k++)
@@ -126,24 +126,16 @@ public class CircularlyLinkedList<E> implements List<E> {
 		{
 			throw new RuntimeException("cannot delete");
 		}
-		
-		if (i == 1)
-		{
-			this.removeFirst();
-		}
-		
-		Node<E> curr = tail;
+
+		Node<E> curr = tail.getNext();
 		Node<E> prev = null;
-		int k = 1;
-		
-		//walk until i or end of list
-		while (curr != null && k != i)
+
+		for (int k = 0; k < i; k++)
 		{
 			prev = curr;
-			curr = curr.next;
-			k++;
+			curr = curr.getNext();
 		}
-		
+
 		
 		//if element at i is null, or reach end of list before i
 		if (curr == null)
@@ -231,7 +223,7 @@ public class CircularlyLinkedList<E> implements List<E> {
 		
 		public ListIterator()
 		{
-			curr = tail;
+			curr = tail.getNext();
 		}
 		
 		@Override
@@ -245,7 +237,7 @@ public class CircularlyLinkedList<E> implements List<E> {
 			
 			else
 			{
-				return curr.getNext() != tail.getNext();
+				return curr != tail.getNext();
 			}
 			
 		}
@@ -326,7 +318,14 @@ public class CircularlyLinkedList<E> implements List<E> {
 	 */
 	public E first()
 	{
-		return tail.getNext().getElement();
+		if (this.isEmpty())
+		{
+			return null;
+		}
+
+		else {
+			return tail.getNext().getElement();
+		}
 	}
 	
 	/**
@@ -345,28 +344,22 @@ public class CircularlyLinkedList<E> implements List<E> {
 	}
 	
 	public String toString() {
-		StringBuilder str = new StringBuilder();
-		if (size == 0)
+		StringBuilder sb = new StringBuilder();
+		sb.append("[");
+
+		Node<E> walk = tail.getNext();
+
+		do
 		{
-			throw new RuntimeException("cannot print");
-		}
-		else if (size == 1)
-		{
-			str.append(tail.getElement());
-			return str.toString();
-		}
-		
-		else
-		{
-			Node<E> curr = tail.getNext();
-			while (true) {
-				str.append(curr.element);
-				str.append(" ");
-				curr = curr.getNext();
-				if (curr == tail.getNext()) break;
-			}
-			return str.toString();
-		}
+			sb.append(walk.getElement());
+			sb.append(", ");
+			walk = walk.getNext();
+		} while (walk != tail.getNext());
+
+		sb.replace(sb.length()-2, sb.length(), "");
+		sb.append("]");
+
+		return sb.toString();
 	}
 	
 	

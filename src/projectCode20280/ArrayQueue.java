@@ -88,14 +88,18 @@ public class ArrayQueue<E> implements Queue<E> {
 	
 	public String toString()
 	{
-		String s = "";
+		StringBuilder sb = new StringBuilder();
+		sb.append("[");
 		
 		for (int i = (front % CAPACITY); i < rear; i++)
 		{
-			s += (data[i] + ", ");
+			sb.append(data[i] + ", ");
 		}
+
+		sb.replace(sb.length()-2, sb.length(), "");
+		sb.append("]");
 		
-		return s;
+		return sb.toString();
 	}
 	
 	public static void main(String[] args) {
