@@ -48,7 +48,7 @@ This is a repository that I maintained and updated throughout the semester for D
 
 #### [LinkedDeque](src/projectCode20280/LinkedDeque.java)
 
-###### [LinkedDeque](src/projectCode20280/LinkedDeque.java)
+###### [LinkedDequeTest](src/projectCode20280/LinkedDequeTest.java)
 
 ### *Trees*
 
